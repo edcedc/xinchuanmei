@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <include layout="@layout/include_top"/>
+
+    <androidx.core.widget.NestedScrollView
+            android:fillViewport="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+    <LinearLayout
+            android:layout_margin="@dimen/px40"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:text="@string/contact_information"
+                    style="@style/Tv15black"/>
+
+        <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_phone"
+                android:layout_marginTop="@dimen/px40"
+                android:hint="@string/contact_information1"
+                android:layout_width="match_parent"
+                android:textSize="@dimen/size30"
+                android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:layout_marginTop="@dimen/px60"
+                android:text="@string/explain"
+                style="@style/Tv15black"/>
+
+
+        <com.flyco.roundview.RoundFrameLayout
+                android:layout_marginTop="@dimen/px40"
+                app:rv_strokeWidth="@dimen/px1"
+                app:rv_strokeColor="@color/gray_DDDDDD"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/et_content"
+                    android:hint="@string/explain1"
+                    android:gravity="top"
+                    android:padding="@dimen/px20"
+                    android:minLines="10"
+                    android:maxLength="390"
+                    android:layout_width="match_parent"
+                    android:textSize="@dimen/size30"
+                    android:background="@color/white"
+                    android:layout_height="match_parent"/>
+
+        </com.flyco.roundview.RoundFrameLayout>
+
+        <com.flyco.roundview.RoundTextView
+                android:id="@+id/btn_commit"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/px20"
+                android:layout_marginRight="@dimen/px20"
+                android:layout_marginBottom="@dimen/px40"
+                android:layout_marginTop="@dimen/px100"
+                app:rv_cornerRadius="@dimen/px60"
+                android:padding="@dimen/px20"
+                android:textSize="@dimen/size30"
+                android:textColor="@color/white"
+                android:text="@string/sure1"
+                app:rv_backgroundColor="@color/org_FF9933"
+                app:rv_backgroundPressColor="@color/white_f4f4f4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

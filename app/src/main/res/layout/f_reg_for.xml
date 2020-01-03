@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   android:orientation="vertical"
+                                                   android:layout_width="match_parent"
+                                                   tools:ignore="MissingConstraints"
+                                                   android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:background="@mipmap/y26"
+            android:layout_height="wrap_content"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_colse"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_margin="@dimen/px60"
+            android:layout_width="wrap_content"
+            android:background="@mipmap/y23"
+            android:layout_height="wrap_content"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_logo"
+            android:layout_width="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/iv_colse"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="@dimen/px20"
+            android:background="@mipmap/ic_launcher"
+            android:layout_height="wrap_content"/>
+
+    <com.flyco.roundview.RoundLinearLayout
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:padding="@dimen/px40"
+            android:layout_marginTop="@dimen/px20"
+            android:layout_marginLeft="@dimen/px40"
+            android:layout_marginRight="@dimen/px40"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/iv_logo"
+            app:rv_cornerRadius="@dimen/px20"
+            app:rv_backgroundColor="@color/white">
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_title"
+                android:textSize="@dimen/size38"
+                android:text="新用户注册"
+                android:textColor="@color/black"
+                style="@style/Tv12white"/>
+
+        <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_phone"
+                android:layout_marginTop="@dimen/px50"
+                android:hint="@string/phone_num"
+                android:maxLength="11"
+                android:background="@null"
+                android:paddingTop="@dimen/px20"
+                android:paddingBottom="@dimen/px20"
+                android:paddingRight="@dimen/px20"
+                android:inputType="phone"
+                android:textSize="@dimen/size26"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        <View
+                style="@style/divider_1"/>
+
+        <LinearLayout
+                android:layout_marginTop="@dimen/px20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/et_code"
+                    android:hint="@string/code_num"
+                    android:textSize="@dimen/size26"
+                    android:maxLength="6"
+                    android:background="@null"
+                    android:paddingTop="@dimen/px20"
+                    android:paddingBottom="@dimen/px20"
+                    android:paddingRight="@dimen/px20"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:inputType="phone"
+                    android:layout_height="wrap_content"/>
+
+            <com.flyco.roundview.RoundTextView
+                    android:id="@+id/tv_code"
+                    style="@style/Tv12red"
+                    android:text="获取验证码"
+                    android:padding="@dimen/px15"
+                    android:textSize="@dimen/size20"
+                    android:textColor="@color/org_FF9933"
+                    android:ems="7"
+                    android:gravity="center"/>
+
+
+        </LinearLayout>
+
+        <View
+                style="@style/divider_1"/>
+
+        <LinearLayout
+                android:layout_marginTop="@dimen/px20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/et_pwd"
+                    android:hint="@string/error_pwd_length"
+                    android:textSize="@dimen/size26"
+                    android:maxLength="10"
+                    android:background="@null"
+                    android:paddingTop="@dimen/px20"
+                    android:paddingBottom="@dimen/px20"
+                    android:paddingRight="@dimen/px20"
+                    android:inputType="textPassword"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"/>
+
+            <CheckBox
+                    android:id="@+id/cb_pwd"
+                    android:background="@null"
+                    android:button="@drawable/cb_pwd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <View
+                style="@style/divider_1"/>
+
+        <LinearLayout
+                android:layout_marginTop="@dimen/px20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/et_pwd1"
+                    android:hint="@string/please_pwd1"
+                    android:textSize="@dimen/size26"
+                    android:background="@null"
+                    android:paddingTop="@dimen/px20"
+                    android:maxLength="10"
+                    android:paddingBottom="@dimen/px20"
+                    android:paddingRight="@dimen/px20"
+                    android:inputType="textPassword"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"/>
+
+            <CheckBox
+                    android:id="@+id/cb_pwd1"
+                    android:background="@null"
+                    android:button="@drawable/cb_pwd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <View
+                style="@style/divider_1"/>
+
+        <com.flyco.roundview.RoundTextView
+                android:id="@+id/btn_commit"
+                android:layout_marginTop="@dimen/px140"
+                app:rv_backgroundColor="@color/org_FF9933"
+                android:textColor="@color/white"
+                app:rv_cornerRadius="@dimen/px40"
+                android:gravity="center"
+                android:padding="@dimen/px20"
+                android:text="@string/register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_agreement"
+                android:layout_marginTop="@dimen/px20"
+                android:text="登录/注册即代表同意《星传媒用户服务协议》"
+                android:textColor="@color/gray_B4B4B4"
+                style="@style/Tv12gray"/>
+
+    </com.flyco.roundview.RoundLinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

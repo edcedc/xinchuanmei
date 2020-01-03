@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <include layout="@layout/include_top"/>
+
+    <com.flyco.roundview.RoundFrameLayout
+            app:rv_cornerRadius="@dimen/px20"
+            app:rv_backgroundColor="@color/white"
+            android:layout_margin="@dimen/px20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_text"
+                android:minLines="8"
+                android:maxLines="8"
+                android:gravity="top"
+                android:padding="@dimen/px20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"/>
+
+    </com.flyco.roundview.RoundFrameLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:layout_weight="1"
+            android:text="@string/yy3"
+            android:padding="@dimen/px20"
+            style="@style/Tv12gray"/>
+
+    <com.flyco.roundview.RoundTextView
+            android:id="@+id/btn_commit"
+            android:gravity="center"
+            android:layout_marginLeft="@dimen/px20"
+            android:layout_marginRight="@dimen/px20"
+            android:layout_marginBottom="@dimen/px80"
+            app:rv_cornerRadius="@dimen/px60"
+            android:padding="@dimen/px20"
+            android:textSize="@dimen/size30"
+            android:textColor="@color/white"
+            android:text="@string/sure1"
+            app:rv_backgroundColor="@color/org_FF9933"
+            app:rv_backgroundPressColor="@color/white_f4f4f4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+</LinearLayout>

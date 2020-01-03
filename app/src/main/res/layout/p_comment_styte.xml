@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:padding="@dimen/px20"
+              android:layout_height="wrap_content">
+
+    <com.flyco.roundview.RoundLinearLayout
+            android:padding="@dimen/px40"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:rv_cornerRadius="@dimen/px20"
+            app:rv_backgroundColor="@color/white">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_comment"
+                android:text="回复评论"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="#445062"
+                android:drawablePadding="@dimen/px20"
+                android:drawableTop="@mipmap/y41"/>
+
+        <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_copy"
+                android:text="复制评论"
+                android:gravity="center"
+                android:drawableTop="@mipmap/y42"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="#445062"
+                android:drawablePadding="@dimen/px20"/>
+
+        <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_del"
+                android:text="删除"
+                android:gravity="center"
+                android:drawableTop="@mipmap/y40"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="#445062"
+                android:drawablePadding="@dimen/px20"/>
+
+    </com.flyco.roundview.RoundLinearLayout>
+
+    <com.flyco.roundview.RoundTextView
+            android:id="@+id/tv_cancel"
+            android:text="取消"
+            android:layout_marginTop="@dimen/px20"
+            app:rv_cornerRadius="@dimen/px20"
+            android:padding="@dimen/px30"
+            app:rv_backgroundColor="@color/white"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+</LinearLayout>

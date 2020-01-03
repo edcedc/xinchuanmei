@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:padding="@dimen/px20"
+        android:layout_height="wrap_content">
+
+    <com.flyco.roundview.RoundLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:rv_cornerRadius="@dimen/px20"
+            app:rv_backgroundColor="@color/white">
+        <TextView
+                android:id="@+id/tv_photo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:textSize="15sp"
+                android:textColor="#445062"
+                android:padding="@dimen/px30"
+                android:text="拍摄"/>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#f4f4f4"/>
+
+        <TextView
+                android:id="@+id/tv_camera"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:padding="@dimen/px30"
+                android:text="从相册中选择"
+                android:textSize="15sp"
+                android:textColor="#445062"/>
+
+    </com.flyco.roundview.RoundLinearLayout>
+
+
+    <com.flyco.roundview.RoundTextView
+            android:id="@+id/tv_cancel"
+            android:text="取消"
+            android:layout_marginTop="@dimen/px20"
+            app:rv_cornerRadius="@dimen/px20"
+            android:padding="@dimen/px30"
+            app:rv_backgroundColor="@color/white"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+</LinearLayout>

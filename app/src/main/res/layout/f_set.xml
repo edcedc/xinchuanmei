@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <include layout="@layout/include_top"/>
+
+    <com.flyco.roundview.RoundLinearLayout
+            android:layout_margin="@dimen/px20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:rv_backgroundColor="@color/white"
+            app:rv_cornerRadius="@dimen/px20">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                tools:ignore="MissingConstraints"
+                android:padding="@dimen/px20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_clear"
+                    android:layout_marginTop="@dimen/px10"
+                    android:layout_marginBottom="@dimen/px10"
+                    android:background="?actionBarItemBackground"
+                    style="@style/Tv13gray"
+                    android:layout_width="match_parent"
+                    android:padding="@dimen/px20"
+                    android:drawableRight="@mipmap/y45"
+                    android:drawablePadding="@dimen/px20"
+                    android:gravity="right"
+                    android:hint="0MB"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Tv13gray"
+                    app:layout_constraintTop_toTopOf="@id/tv_clear"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_clear"
+                    android:text="@string/clear_cach"
+                    android:textColor="@color/black_121212"/>
+
+            <View
+                    android:id="@+id/v2"
+                    app:layout_constraintTop_toBottomOf="@id/tv_clear"
+                    style="@style/divider_1"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Tv13gray"
+                    android:id="@+id/tv_about"
+                    app:layout_constraintTop_toBottomOf="@id/v2"
+                    android:text="@string/about"
+                    android:layout_width="match_parent"
+                    android:paddingRight="@dimen/px20"
+                    android:background="?actionBarItemBackground"
+                    android:drawableRight="@mipmap/y45"
+                    android:paddingTop="@dimen/px20"
+                    android:paddingBottom="@dimen/px20"
+                    android:textColor="@color/black_121212"/>
+
+            <View
+                    android:id="@+id/v3"
+                    app:layout_constraintTop_toBottomOf="@id/tv_about"
+                    style="@style/divider_1"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Tv13gray"
+                    android:id="@+id/tv_agreement"
+                    app:layout_constraintTop_toBottomOf="@id/v3"
+                    android:text="@string/yy9"
+                    android:layout_width="match_parent"
+                    android:paddingRight="@dimen/px20"
+                    android:background="?actionBarItemBackground"
+                    android:drawableRight="@mipmap/y45"
+                    android:paddingTop="@dimen/px20"
+                    android:paddingBottom="@dimen/px20"
+                    android:textColor="@color/black_121212"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.flyco.roundview.RoundLinearLayout>
+
+    <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+    <com.flyco.roundview.RoundTextView
+            android:id="@+id/btn_commit"
+            android:gravity="center"
+            android:layout_marginLeft="@dimen/px20"
+            android:layout_marginRight="@dimen/px20"
+            android:layout_marginBottom="@dimen/px80"
+            app:rv_cornerRadius="@dimen/px60"
+            android:padding="@dimen/px20"
+            android:textSize="@dimen/size30"
+            android:textColor="@color/white"
+            android:text="@string/login_out"
+            app:rv_backgroundColor="@color/org_FF9933"
+            app:rv_backgroundPressColor="@color/white_f4f4f4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+</LinearLayout>

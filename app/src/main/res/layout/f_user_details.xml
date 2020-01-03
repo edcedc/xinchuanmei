@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <include layout="@layout/include_top"/>
+
+    <com.flyco.roundview.RoundLinearLayout
+            android:layout_margin="@dimen/px20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:rv_backgroundColor="@color/white"
+            app:rv_cornerRadius="@dimen/px20">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                tools:ignore="MissingConstraints"
+                android:padding="@dimen/px20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:text="@string/head"
+                    app:layout_constraintTop_toTopOf="@id/iv_head"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_head"
+                    style="@style/Tv13gray"
+                    android:textColor="@color/black_121212"/>
+            
+            <com.yc.yyc.weight.CircleImageView
+                    android:id="@+id/iv_head"
+                    android:layout_marginRight="@dimen/px50"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:src="@mipmap/place_holder_user"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"/>
+
+            <View
+                    android:id="@+id/v1"
+                    android:layout_marginTop="@dimen/px20"
+                    app:layout_constraintTop_toBottomOf="@id/iv_head"
+                    style="@style/divider_1"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_name"
+                    android:layout_marginTop="@dimen/px10"
+                    android:layout_marginBottom="@dimen/px10"
+                    app:layout_constraintTop_toBottomOf="@id/v1"
+                    android:background="?actionBarItemBackground"
+                    style="@style/Tv13gray"
+                    android:layout_width="match_parent"
+                    android:padding="@dimen/px20"
+                    android:drawableRight="@mipmap/y45"
+                    android:drawablePadding="@dimen/px20"
+                    android:gravity="right"
+                    android:hint="未设置"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Tv13gray"
+                    app:layout_constraintTop_toTopOf="@id/tv_name"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_name"
+                    android:text="@string/nick"
+                    android:textColor="@color/black_121212"/>
+
+            <View
+                    android:id="@+id/v2"
+                    android:layout_marginTop="@dimen/px20"
+                    app:layout_constraintTop_toBottomOf="@id/tv_name"
+                    style="@style/divider_1"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_phone"
+                    android:layout_marginTop="@dimen/px10"
+                    android:layout_marginBottom="@dimen/px10"
+                    app:layout_constraintTop_toBottomOf="@id/v2"
+                    style="@style/Tv13gray"
+                    android:background="?actionBarItemBackground"
+                    android:layout_width="match_parent"
+                    android:paddingTop="@dimen/px20"
+                    android:paddingBottom="@dimen/px20"
+                    android:paddingRight="@dimen/px60"
+                    android:drawablePadding="@dimen/px20"
+                    android:gravity="right"
+                    android:hint="未设置"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Tv13gray"
+                    app:layout_constraintTop_toTopOf="@id/tv_phone"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_phone"
+                    android:text="@string/accout"
+                    android:textColor="@color/black_121212"/>
+
+            <View
+                    android:id="@+id/v3"
+                    android:layout_marginTop="@dimen/px20"
+                    app:layout_constraintTop_toBottomOf="@id/tv_phone"
+                    style="@style/divider_1"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_userid"
+                    android:layout_marginTop="@dimen/px10"
+                    android:layout_marginBottom="@dimen/px10"
+                    app:layout_constraintTop_toBottomOf="@id/v3"
+                    style="@style/Tv13gray"
+                    android:layout_width="match_parent"
+                    android:background="?actionBarItemBackground"
+                    android:paddingTop="@dimen/px20"
+                    android:paddingBottom="@dimen/px20"
+                    android:paddingRight="@dimen/px60"
+                    android:drawablePadding="@dimen/px20"
+                    android:gravity="right"
+                    android:hint="未设置"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Tv13gray"
+                    app:layout_constraintTop_toTopOf="@id/tv_userid"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_userid"
+                    android:text="@string/accout_id"
+                    android:textColor="@color/black_121212"/>
+
+            <View
+                    android:id="@+id/v4"
+                    android:layout_marginTop="@dimen/px20"
+                    app:layout_constraintTop_toBottomOf="@id/tv_userid"
+                    style="@style/divider_1"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_autograph"
+                    android:layout_marginTop="@dimen/px10"
+                    android:layout_marginBottom="@dimen/px10"
+                    app:layout_constraintTop_toBottomOf="@id/v4"
+                    style="@style/Tv13gray"
+                    android:layout_width="match_parent"
+                    android:background="?actionBarItemBackground"
+                    android:padding="@dimen/px20"
+                    android:drawableRight="@mipmap/y45"
+                    android:drawablePadding="@dimen/px20"
+                    android:gravity="right"
+                    android:hint="未设置"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Tv13gray"
+                    app:layout_constraintTop_toTopOf="@id/tv_autograph"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_autograph"
+                    android:text="@string/autograph"
+                    android:textColor="@color/black_121212"/>
+
+            <View
+                    android:id="@+id/v5"
+                    android:layout_marginTop="@dimen/px20"
+                    app:layout_constraintTop_toBottomOf="@id/tv_autograph"
+                    style="@style/divider_1"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_pwd"
+                    android:layout_marginTop="@dimen/px10"
+                    android:layout_marginBottom="@dimen/px10"
+                    app:layout_constraintTop_toBottomOf="@id/v5"
+                    android:background="?actionBarItemBackground"
+                    style="@style/Tv13gray"
+                    android:layout_width="match_parent"
+                    android:padding="@dimen/px20"
+                    android:drawableRight="@mipmap/y45"
+                    android:drawablePadding="@dimen/px20"
+                    android:gravity="right"
+                    android:hint="未设置"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Tv13gray"
+                    app:layout_constraintTop_toTopOf="@id/tv_pwd"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_pwd"
+                    android:text="@string/accout_pwd"
+                    android:textColor="@color/black_121212"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.flyco.roundview.RoundLinearLayout>
+
+</LinearLayout>

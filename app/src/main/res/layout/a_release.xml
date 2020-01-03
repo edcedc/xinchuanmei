@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:background="@color/white"
+              android:layout_height="match_parent">
+
+    <include layout="@layout/include_top"/>
+
+    <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_content"
+            android:hint="@string/yy11"
+            android:background="@null"
+            android:minLines="5"
+            android:gravity="top"
+            android:padding="@dimen/px20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/size30"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_margin="@dimen/px20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false"
+            android:overScrollMode="never"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+            style="@style/Tv12gray"
+            android:layout_marginLeft="@dimen/px20"
+            android:text="@string/yy12"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+            style="@style/Tv15black"
+            android:layout_marginTop="@dimen/px40"
+            android:padding="@dimen/px20"
+            android:background="@color/white_f4f4f4"
+            android:layout_width="match_parent"
+            android:text="@string/privacy"/>
+
+    <LinearLayout
+            android:layout_weight="1"
+            android:padding="@dimen/px20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Tv15black"
+                    android:layout_weight="1"
+                    android:text="@string/publishing"/>
+
+        <CheckBox
+                android:id="@+id/cb_pub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/btn_commit"
+            android:gravity="center"
+            android:padding="@dimen/px20"
+            android:textSize="@dimen/size30"
+            android:textColor="@color/white"
+            android:background="@color/org_FF9933"
+            android:text="@string/release"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+</LinearLayout>

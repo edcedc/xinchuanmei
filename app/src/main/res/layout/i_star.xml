@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/px20"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="@dimen/px20"
+        app:cardElevation="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:padding="@dimen/px20"
+            android:layout_width="match_parent"
+            tools:ignore="MissingConstraints"
+            android:layout_height="wrap_content">
+
+        <com.yc.yyc.weight.CircleImageView
+                android:id="@+id/iv_head"
+                android:src="@mipmap/place_holder_user"
+                android:layout_width="35dp"
+                android:layout_height="35dp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_title"
+                android:textSize="@dimen/size28"
+                android:layout_marginLeft="@dimen/px20"
+                app:layout_constraintBottom_toTopOf="@id/tv_time"
+                app:layout_constraintLeft_toRightOf="@id/iv_head"
+                style="@style/Tv15black"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_time"
+                android:textSize="@dimen/size20"
+                app:layout_constraintTop_toBottomOf="@id/tv_title"
+                app:layout_constraintLeft_toLeftOf="@id/tv_title"
+                style="@style/Tv12gray"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_content"
+                android:layout_marginTop="@dimen/px20"
+                app:layout_constraintTop_toBottomOf="@id/tv_time"
+                style="@style/Tv15black"/>
+
+        <com.yc.yyc.weight.WithScrollGridView
+                android:id="@+id/gridView"
+                android:numColumns="3"
+                android:layout_marginTop="@dimen/px20"
+                android:verticalSpacing="@dimen/px10"
+                app:layout_constraintTop_toBottomOf="@id/tv_content"
+                android:horizontalSpacing="@dimen/px10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_zan"
+                android:text="0"
+                android:drawablePadding="@dimen/px10"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/iv_comment"
+                app:layout_constraintTop_toTopOf="@id/iv_comment"
+                app:layout_constraintBottom_toBottomOf="@id/iv_comment"
+                android:drawableLeft="@mipmap/y57"
+                style="@style/Tv13gray"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_comment"
+                android:layout_marginTop="@dimen/px30"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/tv_zan"
+                app:layout_constraintTop_toBottomOf="@id/gridView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/y56"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

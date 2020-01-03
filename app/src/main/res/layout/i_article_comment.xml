@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:padding="@dimen/px40"
+        android:background="?actionBarItemBackground"
+        tools:ignore="MissingConstraints"
+        android:layout_height="wrap_content">
+
+    <com.yc.yyc.weight.CircleImageView
+            android:id="@+id/iv_head"
+            android:src="@mipmap/place_holder_user"
+            android:layout_width="33.5dp"
+            android:layout_height="33.5dp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_title"
+            style="@style/Tv13gray"
+            android:layout_marginLeft="@dimen/px30"
+            app:layout_constraintLeft_toRightOf="@id/iv_head"
+            android:textColor="@color/black_121212"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_time"
+            app:layout_constraintLeft_toLeftOf="@id/tv_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            style="@style/Tv12gray"/>
+
+    <com.flyco.roundview.RoundTextView
+            android:id="@+id/tv_desc"
+            android:visibility="gone"
+            app:rv_cornerRadius="@dimen/px10"
+            android:padding="@dimen/px20"
+            android:textColor="@color/gray_B4B4B4"
+            android:layout_marginTop="@dimen/px20"
+            app:layout_constraintLeft_toLeftOf="@id/tv_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_time"
+            app:layout_constraintRight_toRightOf="parent"
+            android:textSize="@dimen/size26"
+            app:rv_backgroundColor="@color/white_F2F2F3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_content"
+            android:layout_marginTop="@dimen/px20"
+            app:layout_constraintLeft_toLeftOf="@id/tv_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_desc"
+            style="@style/Tv15black"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_zan"
+            app:layout_constraintTop_toBottomOf="@id/tv_content"
+            app:layout_constraintLeft_toLeftOf="@id/tv_content"
+            android:layout_marginTop="@dimen/px30"
+            android:text="赞"
+            android:drawablePadding="@dimen/px5"
+            android:drawableLeft="@mipmap/y35"
+            style="@style/Tv12gray"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_cai"
+            app:layout_constraintTop_toTopOf="@id/tv_zan"
+            app:layout_constraintBottom_toBottomOf="@id/tv_zan"
+            app:layout_constraintStart_toEndOf="@id/tv_zan"
+            android:layout_marginLeft="@dimen/px40"
+            android:text="踩"
+            android:drawablePadding="@dimen/px5"
+            android:drawableLeft="@mipmap/y37"
+            style="@style/Tv12gray"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_comment"
+            android:background="@mipmap/y32"
+            app:layout_constraintTop_toTopOf="@id/tv_zan"
+            app:layout_constraintBottom_toBottomOf="@id/tv_zan"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

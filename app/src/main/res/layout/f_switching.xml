@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints"
+       android:layout_width="match_parent"
+        android:paddingLeft="@dimen/px40"
+        android:paddingRight="@dimen/px40"
+        android:paddingTop="@dimen/px80"
+       android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_colse"
+            android:layout_width="wrap_content"
+            android:background="@mipmap/y29"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_height="wrap_content"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_title"
+            app:layout_constraintTop_toBottomOf="@id/iv_colse"
+            android:textColor="@color/black"
+            android:text="@string/switching_channel"
+            style="@style/Tv12gray"
+            android:textSize="@dimen/size36"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+            style="@style/Tv12gray"
+            android:id="@+id/tv_content"
+            android:layout_marginTop="@dimen/px10"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            android:text="@string/yyc1"/>
+
+    <com.zhy.view.flowlayout.TagFlowLayout
+            android:id="@+id/fl_label"
+            android:layout_marginTop="@dimen/px60"
+            app:layout_constraintTop_toBottomOf="@id/tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

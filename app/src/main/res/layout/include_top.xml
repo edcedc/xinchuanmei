@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:id="@+id/top_layout"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <View
+            android:visibility="gone"
+            android:id="@+id/title_bar"
+            style="@style/title_bar"/>
+
+    <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:layout_gravity="top"
+            android:background="#ffffff"
+            android:theme="@style/AppTheme.AppBarLight"
+            app:navigationIcon="@mipmap/black_close"
+            app:popupTheme="@style/AppTheme.Popup"
+            app:subtitleTextColor="@color/white"
+            app:titleTextColor="@color/white">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/top_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="@color/black_121212"
+                android:textSize="19sp"/>
+
+        <FrameLayout
+                android:paddingLeft="20dp"
+                android:paddingRight="15dp"
+                android:id="@+id/top_right_fy"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="right">
+
+            <com.flyco.roundview.RoundTextView
+                    android:id="@+id/top_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="@color/black_121212"
+                    android:textSize="12sp"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:visibility="gone"
+                    android:id="@+id/top_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"/>
+
+        </FrameLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <View
+            style="@style/divider_dropshadow"
+            android:id="@+id/top_view"/>
+
+</LinearLayout>

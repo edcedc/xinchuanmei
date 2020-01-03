@@ -1,0 +1,83 @@
+<resources>
+    <string name="app_name">yyc框架</string>
+
+    <string name="message_permission_rationale">授予下列权限以继续程序:\n\n%1$s</string>
+    <string name="message_overlay_failed">您的电话不允许我们使用其他应用程序.</string>
+    <string name="message_permission_always_failed">我们需要以下权限，请在设置中为我们开启：\n\n%1$s</string>
+    <string name="setting" translatable="false">设置</string>
+    <string name="resume" translatable="false">重试</string>
+    <string name="cancel" translatable="false">取消</string>
+
+    <string name="error_phone" translatable="false">手机号码格式错误</string>
+    <string name="error_phone1" translatable="false">手机号码或验证码为空</string>
+    <string name="error_" translatable="false">请输入完整</string>
+    <string name="error_nickname" translatable="false">请输入您的昵称</string>
+    <string name="error_pwd_length" translatable="false">请输入6-10位密码</string>
+    <string name="please_phone" translatable="false">请输入手机号码</string>
+    <string name="please_code" translatable="false">请输入短信验证码</string>
+    <string name="please_pwd1" translatable="false">请再次输入密码</string>
+    <string name="please_pwd2" translatable="false">两次密码不一致</string>
+    <string name="please_pwd3" translatable="false">请输入密码</string>
+    <string name="error_1" translatable="false">请阅读协议</string>
+    <string name="sure" translatable="false">完成</string>
+    <string name="sure1" translatable="false">提交</string>
+    <string name="submission" translatable="false">保存</string>
+
+    <string name="search_hiht" translatable="false">输入要搜索的关键词</string>
+    <string name="notice" translatable="false">公告</string>
+    <string name="phone_num" translatable="false">手机号</string>
+    <string name="phone_num1" translatable="false">账号/手机号</string>
+    <string name="code_num" translatable="false">短信验证码</string>
+    <string name="phone_pwd" translatable="false">账号密码</string>
+    <string name="login" translatable="false">登录</string>
+    <string name="register" translatable="false">注册</string>
+    <string name="login1" translatable="false">快捷登录</string>
+    <string name="login2" translatable="false">账户登录</string>
+    <string name="forget_pwd" translatable="false">忘记密码？</string>
+    <string name="switching_channel" translatable="false">切换频道</string>
+    <string name="yyc1" translatable="false">点击对已选栏目进行切换</string>
+    <string name="noticel" translatable="false">星公告</string>
+    <string name="clear" translatable="false">清空</string>
+    <string name="look_desc" translatable="false">查看详情</string>
+    <string name="commentary" translatable="false">精彩评论</string>
+    <string name="yyc2" translatable="false">  发表你的评论...</string>
+    <string name="send" translatable="false">发送</string>
+    <string name="login_register" translatable="false">登陆/注册</string>
+    <string name="collection" translatable="false">收藏</string>
+    <string name="my_collection" translatable="false">我的收藏</string>
+    <string name="follow" translatable="false">关注</string>
+    <string name="history" translatable="false">浏览历史</string>
+    <string name="contact" translatable="false">联系我们</string>
+    <string name="head" translatable="false">头像</string>
+    <string name="nick" translatable="false">昵称</string>
+    <string name="accout" translatable="false">账户</string>
+    <string name="accout1" translatable="false">账户管理</string>
+    <string name="accout_id" translatable="false">账户UID</string>
+    <string name="autograph" translatable="false">个性签名</string>
+    <string name="accout_pwd" translatable="false">账户密码</string>
+    <string name="set_nick" translatable="false">设置昵称</string>
+    <string name="set_nick1" translatable="false">请输出昵称！</string>
+    <string name="yy3" translatable="false">注：可以是汉字、字母、数字、长度1-16位字符</string>
+    <string name="yy4" translatable="false">描绘下自己</string>
+    <string name="yy5" translatable="false">新用户注册</string>
+    <string name="yy6" translatable="false">找回密码</string>
+    <string name="yy7" translatable="false">修改密码</string>
+    <string name="yy8" translatable="false">设置密码</string>
+    <string name="clear_cach" translatable="false">清楚缓存</string>
+    <string name="about" translatable="false">关于我们</string>
+    <string name="yy9" translatable="false">用户服务协议及隐私政策</string>
+    <string name="login_out" translatable="false">退出登录</string>
+    <string name="set" translatable="false">设置</string>
+    <string name="yy10" translatable="false">用户协议</string>
+    <string name="contact_information" translatable="false">联系方式</string>
+    <string name="contact_information2" translatable="false">联系说明</string>
+    <string name="contact_information1" translatable="false">请输入联系方式</string>
+    <string name="explain" translatable="false">说明</string>
+    <string name="explain1" translatable="false">请输入内容，390字以内</string>
+    <string name="yy11" translatable="false">发布动态，爆料一下...</string>
+    <string name="yy12" translatable="false">选择上传图片，图片不得违规！</string>
+    <string name="privacy" translatable="false">隐私</string>
+    <string name="publishing" translatable="false">匿名发布</string>
+    <string name="release" translatable="false">发布</string>
+
+</resources>
