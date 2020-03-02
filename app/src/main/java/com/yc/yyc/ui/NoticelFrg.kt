@@ -41,7 +41,7 @@ class NoticelFrg : BaseFragment(), NoticelContract.View{
 
     override fun initView(rootView: View) {
         mPresenter.init(this)
-        setTitle(getString(R.string.noticel), getString(R.string.clear))
+        setTitle(getString(R.string.noticel))
         setRecyclerViewType(recyclerView = recyclerView)
 //        recyclerView.addItemDecoration(LinearDividerItemDecoration(activity, DividerItemDecoration.VERTICAL, 2))
         recyclerView.adapter = adapter
@@ -57,10 +57,6 @@ class NoticelFrg : BaseFragment(), NoticelContract.View{
                 mPresenter.onRequest(pagerNumber)
             }
         })
-    }
-
-    override fun setOnRightClickListener() {
-        super.setOnRightClickListener()
     }
 
     override fun setData(objects: Object) {

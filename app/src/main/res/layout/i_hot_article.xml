@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:background="?actionBarItemBackground"
+        android:layout_width="match_parent"
+        android:padding="@dimen/px20"
+        tools:ignore="MissingConstraints"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_img"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="@dimen/px10"
+                android:src="@drawable/no_banner"
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="163dp"/>
+
+       <androidx.constraintlayout.widget.ConstraintLayout
+               android:background="@color/white_f4f4f4"
+               android:padding="@dimen/px20"
+               app:layout_constraintTop_toBottomOf="@id/iv_img"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content">
+
+               <androidx.appcompat.widget.AppCompatTextView
+                       android:id="@+id/tv_title"
+                       style="@style/Tv15black"/>
+
+               <androidx.appcompat.widget.AppCompatTextView
+                       android:id="@+id/tv_hot"
+                       style="@style/Tv12gray"
+                       android:layout_marginTop="@dimen/px20"
+                       app:layout_constraintTop_toBottomOf="@id/tv_title"
+                       app:layout_constraintLeft_toLeftOf="@id/tv_title"
+                       android:drawableLeft="@mipmap/y58"
+                       android:drawablePadding="@dimen/px5"
+                       android:layout_marginBottom="@dimen/px20"/>
+
+
+
+       </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:background="@mipmap/y62"
+                app:layout_constraintLeft_toLeftOf="@id/tv_num"
+
+                app:layout_constraintBottom_toTopOf="@id/tv_num"
+                android:layout_height="wrap_content"/>
+
+        <com.flyco.roundview.RoundTextView
+                android:id="@+id/tv_num"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginLeft="@dimen/px30"
+                android:layout_marginTop="@dimen/px10"
+                android:text="1"
+                android:minWidth="20dp"
+                android:padding="@dimen/px8"
+                android:gravity="center"
+                android:textColor="@color/white"
+                app:rv_cornerRadius_BL="@dimen/px40"
+                app:rv_cornerRadius_BR="@dimen/px40"
+                app:rv_backgroundColor="#F74E25"
+                android:textSize="@dimen/size24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

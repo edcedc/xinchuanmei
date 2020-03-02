@@ -12,12 +12,16 @@ class DataBean : Serializable {
     var name: String? = null
     var content: String? = null
     var title: String? = null
+    var lookNum: String? = null
     var textual: String? = null
     var userId: String? = null
     var type: Int = 0
+    var ifAdvert: Int = 0
+    var position: String? = null
     var nick: String? = null
     var url: String? = null
     var source: String? = null
+    var advertId: String? = null
     var byUserId: String? = null
     var create_time: String? = null
     var background: String? = null
@@ -36,15 +40,19 @@ class DataBean : Serializable {
     var picUrl: String? = null
     var description: String? = null
     var articleId: String? = null
+    var category: String? = null
+    var starId: String? = null
     var createTime: String? = null
     var alityId: String? = null
     var context: String? = null
     var noticeId: String? = null
     var attachId: String? = null
     var head: String? = null
+    var sheUserId: String? = null
     var userNickName: String? = null
     var discussId: String? = null
     var sheUserNickName: String? = null
     var sheContent: String? = null
+    var starDisList = ArrayList<DataBean>()
 
 }

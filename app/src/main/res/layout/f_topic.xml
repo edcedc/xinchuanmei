@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:background="@color/white"
+              android:layout_height="match_parent">
+
+    <include layout="@layout/include_top"/>
+
+    <com.classic.common.MultipleStatusView
+            android:id="@+id/multipleStatusView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:emptyView="@layout/layout_empty_view"
+            app:errorView="@layout/layout_error_view"
+            app:loadingView="@layout/layout_loading_view"
+            app:noNetworkView="@layout/layout_network_view">
+
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+                android:id="@+id/refreshLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srlHeaderMaxDragRate="2.5"
+                app:srlPrimaryColor="@android:color/darker_gray"
+                app:srlAccentColor="@android:color/white">
+
+            <com.scwang.smartrefresh.header.MaterialHeader
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fillViewport="true">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_title"
+                            android:textSize="@dimen/size36"
+                            android:layout_margin="@dimen/px20"
+                            style="@style/Tv15black"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_desc"
+                            android:layout_margin="@dimen/px20"
+                            style="@style/Tv15black"
+                            android:textColor="@color/gray_999999"/>
+
+                    <include
+                            layout="@layout/i_home_o_s"
+                            android:visibility="gone"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_jingcai"
+                            android:text="@string/commentary"
+                            android:textColor="@color/org_FF9933"
+                            android:layout_margin="@dimen/px20"
+                            style="@style/Tv15black"/>
+
+                    <View
+                            style="@style/divider_1"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                            xmlns:android="http://schemas.android.com/apk/res/android"
+                            android:id="@+id/recyclerView"
+                            android:background="@color/white"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:nestedScrollingEnabled="false"
+                            tools:listitem="@android:layout/simple_list_item_2"
+                            android:overScrollMode="never"/>
+
+
+                </LinearLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+            <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+    </com.classic.common.MultipleStatusView>
+
+    <View
+            style="@style/divider_1"/>
+
+    <LinearLayout
+            android:padding="@dimen/px20"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <com.flyco.roundview.RoundTextView
+                android:id="@+id/tv_comment"
+                android:layout_weight="1"
+                app:rv_backgroundColor="@color/white_f4f4f4"
+                app:rv_backgroundPressColor="@color/white_F2F2F3"
+                app:rv_cornerRadius="@dimen/px40"
+                android:padding="@dimen/px20"
+                android:text="@string/yyc2"
+                style="@style/Tv13gray"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_comment_num"
+                style="@style/Tv12gray"
+                android:visibility="gone"
+                android:textSize="@dimen/size20"
+                android:layout_marginLeft="@dimen/px60"
+                android:gravity="center"
+                android:text="评论0"
+                android:drawableTop="@mipmap/y33"
+                android:textColor="@color/black_121212"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_collect"
+                android:visibility="gone"
+                style="@style/Tv12gray"
+                android:textSize="@dimen/size20"
+                android:layout_marginLeft="@dimen/px60"
+                android:layout_marginRight="@dimen/px60"
+                android:text="收藏"
+                android:drawableTop="@mipmap/y30"
+                android:textColor="@color/black_121212"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_zan"
+                android:visibility="gone"
+                style="@style/Tv12gray"
+                android:textSize="@dimen/size20"
+                android:gravity="center"
+                android:text="赞0"
+                android:drawableTop="@mipmap/y36"
+                android:textColor="@color/black_121212"/>
+
+    </LinearLayout>
+
+</LinearLayout>

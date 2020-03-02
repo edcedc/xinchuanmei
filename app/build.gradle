@@ -67,7 +67,7 @@ android {
     // 自定义输出配置
     android.applicationVariants.all { variant ->
         variant.outputs.all {
-            outputFileName = "yyc_${variant.versionName}_${variant.name}_${releaseTime()}.apk"
+            outputFileName = "xcm_${variant.versionName}_${variant.name}_${releaseTime()}.apk"
         }
     }
 
@@ -157,7 +157,8 @@ dependencies {
     // swipeback基于fragmentation, 如果是自定制SupportActivity/Fragment，则参照SwipeBackActivity/Fragment实现即可
     implementation 'me.yokeyword:eventbus-activity-scope:1.1.0'
 
-
+    //数据库 litepal
+    implementation 'org.litepal.android:java:3.0.0'
     implementation 'org.greenrobot:eventbus:3.1.1'
     //图片加载
     implementation 'com.github.bumptech.glide:glide:4.7.1'
@@ -183,13 +184,13 @@ dependencies {
     //跟上面一起选择地址要
     implementation 'com.alibaba:fastjson:1.1.56.android'
     //视频完整版引入
-    implementation 'com.shuyu:gsyVideoPlayer-java:7.1.1'
+//    implementation 'com.shuyu:gsyVideoPlayer-java:7.1.1'
     //视频更多ijk的编码支持
-    implementation 'com.shuyu:GSYVideoPlayer-exo2:7.1.1'
+//    implementation 'com.shuyu:GSYVideoPlayer-exo2:7.1.1'
     //根据你的需求ijk模式的so
-    implementation 'com.shuyu:gsyVideoPlayer-armv7a:7.1.1'
-    implementation 'com.shuyu:gsyVideoPlayer-arm64:7.1.1'
-    implementation 'com.shuyu:gsyVideoPlayer-x86:7.1.1'
+//    implementation 'com.shuyu:gsyVideoPlayer-armv7a:7.1.1'
+//    implementation 'com.shuyu:gsyVideoPlayer-arm64:7.1.1'
+//    implementation 'com.shuyu:gsyVideoPlayer-x86:7.1.1'
     //完整版引入
 //    implementation 'com.shuyu:gsyVideoPlayer-java:6.0.3'
     //更多ijk的编码支持

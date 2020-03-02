@@ -17,7 +17,7 @@
             app:layout_constraintBottom_toBottomOf="@id/tv_search"
             app:layout_constraintRight_toLeftOf="@id/tv_search"
             app:layout_constraintLeft_toLeftOf="parent"
-            android:background="@mipmap/logo"
+            android:background="@mipmap/logo1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -31,6 +31,7 @@
             android:paddingBottom="@dimen/px10"
             android:drawablePadding="@dimen/px20"
             style="@style/Tv13gray"
+            android:textSize="@dimen/size24"
             android:drawableLeft="@mipmap/sousuo"
             app:layout_constraintLeft_toRightOf="@id/iv_logo"
             android:layout_width="0dp"

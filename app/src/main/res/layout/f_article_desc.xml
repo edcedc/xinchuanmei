@@ -23,10 +23,10 @@
                 android:layout_height="wrap_content"/>
 
         <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_gravity="center"
                 android:background="@mipmap/logo"
-                android:layout_height="wrap_content"/>
+                android:layout_height="20dp"/>
 
     </FrameLayout>
 
@@ -35,137 +35,173 @@
             style="@style/divider_dropshadow"
             android:id="@+id/top_view"/>
 
-        <com.classic.common.MultipleStatusView
-                android:id="@+id/multipleStatusView"
+    <com.classic.common.MultipleStatusView
+            android:id="@+id/multipleStatusView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:emptyView="@layout/layout_empty_view"
+            app:errorView="@layout/layout_error_view"
+            app:loadingView="@layout/layout_loading_view"
+            app:noNetworkView="@layout/layout_network_view">
+
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+                android:id="@+id/refreshLayout"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                app:emptyView="@layout/layout_empty_view"
-                app:errorView="@layout/layout_error_view"
-                app:loadingView="@layout/layout_loading_view"
-                app:noNetworkView="@layout/layout_network_view">
+                android:layout_height="match_parent"
+                app:srlHeaderMaxDragRate="2.5"
+                app:srlPrimaryColor="@android:color/darker_gray"
+                app:srlAccentColor="@android:color/white">
 
-            <com.scwang.smartrefresh.layout.SmartRefreshLayout
-                    android:id="@+id/refreshLayout"
+            <com.scwang.smartrefresh.header.MaterialHeader
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:srlHeaderMaxDragRate="2.5"
-                    app:srlPrimaryColor="@android:color/darker_gray"
-                    app:srlAccentColor="@android:color/white">
+                    android:layout_height="wrap_content"/>
 
-                <com.scwang.smartrefresh.header.MaterialHeader
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+            <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:fillViewport="true"
+                    android:layout_height="match_parent">
 
-                <androidx.core.widget.NestedScrollView
+                <LinearLayout
+                        android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:fillViewport="true"
+                        tools:ignore="MissingConstraints"
                         android:layout_height="match_parent">
 
-                    <LinearLayout
-                            android:orientation="vertical"
+                    <ProgressBar
+                            android:id="@+id/progressBar"
+                            style="?android:attr/progressBarStyleHorizontal"
                             android:layout_width="match_parent"
-                            tools:ignore="MissingConstraints"
-                            android:layout_height="match_parent">
+                            android:layout_height="2dp"
+                            android:max="100"
+                            android:progress="0"/>
 
-                        <ProgressBar
-                                android:id="@+id/progressBar"
-                                style="?android:attr/progressBarStyleHorizontal"
-                                android:layout_width="match_parent"
-                                android:layout_height="2dp"
-                                android:max="100"
-                                android:progress="0"/>
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_titlee"
+                            style="@style/Tv15black"
+                            android:layout_margin="@dimen/px20"
+                            android:textSize="@dimen/size38"/>
 
-                        <com.yc.yyc.weight.X5WebView
-                                android:id="@+id/webView"
-                                app:layout_constraintTop_toBottomOf="@id/progressBar"
-                                android:layout_width="match_parent"
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_time"
+                            android:layout_marginLeft="@dimen/px20"
+                            style="@style/Tv12gray"/>
+
+                    <com.flyco.roundview.RoundFrameLayout
+                            app:rv_backgroundColor="@color/white_f4f4f4"
+                            app:rv_cornerRadius="@dimen/px10"
+                            android:layout_width="match_parent"
+                            android:layout_margin="@dimen/px20"
+                            android:padding="@dimen/px20"
+                            android:layout_height="wrap_content">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="wrap_content"
+                                android:background="@mipmap/logo1"
                                 android:layout_height="wrap_content"/>
 
-                        <include layout="@layout/i_home_o_s"
-                                app:layout_constraintTop_toBottomOf="@id/webView"/>
+                    </com.flyco.roundview.RoundFrameLayout>
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                                android:text="@string/commentary"
-                                android:layout_margin="@dimen/px20"
-                                style="@style/Tv15black"/>
+                    <com.yc.yyc.weight.NOX5WebView
+                            android:id="@+id/webView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
 
-                        <View
-                                style="@style/divider_1"/>
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_margin="@dimen/px20"
+                            style="@style/Tv12gray"
+                            android:text="@string/yy13"/>
 
-                        <androidx.recyclerview.widget.RecyclerView
-                                xmlns:android="http://schemas.android.com/apk/res/android"
-                                android:id="@+id/recyclerView"
-                                android:background="@color/white"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:nestedScrollingEnabled="false"
-                                tools:listitem="@android:layout/simple_list_item_2"
-                                android:overScrollMode="never"/>
+                    <include layout="@layout/i_home_o_s"
+                             app:layout_constraintTop_toBottomOf="@id/webView"/>
 
-                    </LinearLayout>
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_jingcai"
+                            android:text="@string/commentary"
+                            android:textColor="@color/org_FF9933"
+                            android:layout_margin="@dimen/px20"
+                            style="@style/Tv15black"/>
 
-                </androidx.core.widget.NestedScrollView>
+                    <View
+                            style="@style/divider_1"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                            xmlns:android="http://schemas.android.com/apk/res/android"
+                            android:id="@+id/recyclerView"
+                            android:background="@color/white"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:nestedScrollingEnabled="false"
+                            tools:listitem="@android:layout/simple_list_item_2"
+                            android:overScrollMode="never"/>
+
+                    <include layout="@layout/layout_empty_view"
+                             android:layout_width="match_parent"
+                            android:layout_height="400dp"/>
+
+                </LinearLayout>
+
+            </androidx.core.widget.NestedScrollView>
 
 
 
-                <com.scwang.smartrefresh.layout.footer.ClassicsFooter
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+            <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
-            </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
-        </com.classic.common.MultipleStatusView>
+    </com.classic.common.MultipleStatusView>
 
     <View
             style="@style/divider_1"/>
 
-        <LinearLayout
+    <LinearLayout
+            android:padding="@dimen/px20"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <com.flyco.roundview.RoundTextView
+                android:id="@+id/tv_comment"
+                android:layout_weight="1"
+                app:rv_backgroundColor="@color/white_f4f4f4"
+                app:rv_backgroundPressColor="@color/white_F2F2F3"
+                app:rv_cornerRadius="@dimen/px40"
                 android:padding="@dimen/px20"
+                android:text="@string/yyc2"
+                style="@style/Tv13gray"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_comment_num"
+                style="@style/Tv12gray"
+                android:textSize="@dimen/size20"
+                android:layout_marginLeft="@dimen/px60"
                 android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:text="评论0"
+                android:drawableTop="@mipmap/y33"
+                android:textColor="@color/black_121212"/>
 
-            <com.flyco.roundview.RoundTextView
-                    android:id="@+id/tv_comment"
-                    android:layout_weight="1"
-                    app:rv_backgroundColor="@color/white_f4f4f4"
-                    app:rv_backgroundPressColor="@color/white_F2F2F3"
-                    app:rv_cornerRadius="@dimen/px40"
-                    android:padding="@dimen/px20"
-                    android:text="@string/yyc2"
-                    style="@style/Tv13gray"/>
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_collect"
+                style="@style/Tv12gray"
+                android:textSize="@dimen/size20"
+                android:layout_marginLeft="@dimen/px60"
+                android:layout_marginRight="@dimen/px60"
+                android:text="收藏"
+                android:drawableTop="@mipmap/y30"
+                android:textColor="@color/black_121212"/>
 
-            <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_comment_num"
-                    style="@style/Tv12gray"
-                    android:textSize="@dimen/size20"
-                    android:layout_marginLeft="@dimen/px60"
-                    android:gravity="center"
-                    android:text="评论0"
-                    android:drawableTop="@mipmap/y33"
-                    android:textColor="@color/black_121212"/>
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_zan"
+                style="@style/Tv12gray"
+                android:textSize="@dimen/size20"
+                android:gravity="center"
+                android:text="赞0"
+                android:drawableTop="@mipmap/y36"
+                android:textColor="@color/black_121212"/>
 
-            <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_collect"
-                    style="@style/Tv12gray"
-                    android:textSize="@dimen/size20"
-                    android:layout_marginLeft="@dimen/px60"
-                    android:layout_marginRight="@dimen/px60"
-                    android:text="收藏"
-                    android:drawableTop="@mipmap/y30"
-                    android:textColor="@color/black_121212"/>
-
-            <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_zan"
-                    style="@style/Tv12gray"
-                    android:textSize="@dimen/size20"
-                    android:gravity="center"
-                    android:text="赞0"
-                    android:drawableTop="@mipmap/y36"
-                    android:textColor="@color/black_121212"/>
-
-        </LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>

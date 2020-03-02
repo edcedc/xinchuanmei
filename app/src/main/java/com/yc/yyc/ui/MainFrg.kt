@@ -36,7 +36,7 @@ class MainFrg : BaseFragment(){
         bottomBar
             .addItem(BottomBarTab(_mActivity, R.mipmap.y1, "新闻"))
             .addItem(BottomBarTab(_mActivity, R.mipmap.y3, "爆料"))
-            .addItem(BottomBarTab(_mActivity, R.mipmap.y5, "新动态"))
+            .addItem(BottomBarTab(_mActivity, R.mipmap.y5, "波士动态"))
             .addItem(BottomBarTab(_mActivity, R.mipmap.y7, "话题"))
             .addItem(BottomBarTab(_mActivity, R.mipmap.y9, "我的"))
         bottomBar.setOnTabSelectedListener(object : BottomBar.OnTabSelectedListener {

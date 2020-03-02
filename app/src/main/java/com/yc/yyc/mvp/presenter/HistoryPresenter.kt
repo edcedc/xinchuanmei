@@ -14,7 +14,7 @@ import com.yc.yyc.mvp.impl.HistoryContract
  * 版本：v1.0
  */
 
-class HistoryPresenter  : BaseListPresenter<HistoryContract.View>(), HistoryContract.Presenter{
+class HistoryPresenter : BaseListPresenter<HistoryContract.View>(), HistoryContract.Presenter{
 
     override fun onRequest(pagerNumber: Int) {
         val disposable = RetrofitManager.service.articleGetHistoryList(pagerNumber)

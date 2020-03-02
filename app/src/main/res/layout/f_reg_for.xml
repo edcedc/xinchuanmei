@@ -28,7 +28,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             android:layout_marginTop="@dimen/px20"
-            android:background="@mipmap/ic_launcher"
+            android:background="@mipmap/icon_logo1"
             android:layout_height="wrap_content"/>
 
     <com.flyco.roundview.RoundLinearLayout
@@ -182,12 +182,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
-        <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_agreement"
+        <LinearLayout
+                android:gravity="center"
                 android:layout_marginTop="@dimen/px20"
-                android:text="登录/注册即代表同意《星传媒用户服务协议》"
-                android:textColor="@color/gray_B4B4B4"
-                style="@style/Tv12gray"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <CheckBox
+                    android:id="@+id/cb"
+                    android:scaleX="0.7"
+                    android:scaleY="0.7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_agreement"
+                    android:text="登录/注册即代表同意《星传媒用户服务协议》"
+                    android:textColor="@color/gray_B4B4B4"
+                    style="@style/Tv12gray"/>
+
+        </LinearLayout>
 
     </com.flyco.roundview.RoundLinearLayout>
 

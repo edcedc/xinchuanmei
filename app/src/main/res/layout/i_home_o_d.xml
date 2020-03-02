@@ -20,15 +20,29 @@
            android:id="@+id/gridView"
            app:layout_constraintTop_toBottomOf="@id/tv_title"
            android:numColumns="3"
-           android:horizontalSpacing="@dimen/px20"
+           android:horizontalSpacing="@dimen/px10"
            android:layout_marginTop="@dimen/px10"
            tools:listitem="@android:layout/simple_list_item_2"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"/>
 
+    <com.flyco.roundview.RoundTextView
+            android:id="@+id/tv_adv"
+            android:text="广告"
+            app:layout_constraintTop_toBottomOf="@id/gridView"
+            android:layout_marginTop="@dimen/px20"
+            android:padding="@dimen/px5"
+            app:rv_strokeWidth="@dimen/px1"
+            app:rv_strokeColor="@color/gray_999999"
+            android:textSize="@dimen/size20"
+            style="@style/Tv12gray"/>
+
     <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_desc"
-            app:layout_constraintTop_toBottomOf="@id/gridView"
+            android:layout_marginLeft="@dimen/px20"
+            app:layout_constraintTop_toTopOf="@id/tv_adv"
+            app:layout_constraintBottom_toBottomOf="@id/tv_adv"
+            app:layout_constraintLeft_toRightOf="@id/tv_adv"
             style="@style/Tv12gray"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

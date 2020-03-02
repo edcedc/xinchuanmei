@@ -19,8 +19,10 @@ import com.yc.yyc.R
 import com.yc.yyc.base.BaseFragment
 import com.yc.yyc.base.User
 import com.yc.yyc.controller.UIHelper
+import com.yc.yyc.mar.MyApplication
 import com.yc.yyc.mvp.impl.LoginContract
 import com.yc.yyc.mvp.presenter.LoginPresenter
+import com.yc.yyc.ui.act.HtmlAct
 import com.yc.yyc.ui.act.LoginAct
 import com.yc.yyc.utils.CountDownTimerUtils
 import com.yc.yyc.utils.TabEntity
@@ -61,6 +63,7 @@ class LoginFrg : BaseFragment(), LoginContract.View, View.OnClickListener{
         tv_register.setOnClickListener(this)
         tv_code.setOnClickListener(this)
         iv_colse.setOnClickListener(this)
+        tv_agreement.setOnClickListener(this)
         val mTabEntities = ArrayList<CustomTabEntity>()
         val strings = arrayOf(getString(R.string.login1), getString(R.string.login2))
         for (s in strings) {
@@ -161,6 +164,10 @@ class LoginFrg : BaseFragment(), LoginContract.View, View.OnClickListener{
                 UIHelper.startRegisterForgetFrg(this, 2)
             }
             R.id.btn_commit ->{
+                if (!cb.isChecked){
+                    showToast(MyApplication.mContext?.resources?.getString(R.string.error_1) as String)
+                    return
+                }
                 if (mPosition == 0){
                     mPresenter.onCodeLogin(et_phone.text.toString(), et_code.text.toString())
                 }else{
@@ -172,6 +179,9 @@ class LoginFrg : BaseFragment(), LoginContract.View, View.OnClickListener{
             }
             R.id.iv_colse ->{
                 activity!!.finish()
+            }
+            R.id.tv_agreement ->{
+                UIHelper.startHtmlAct(HtmlAct.REGISTER)
             }
         }
     }

@@ -22,7 +22,7 @@
 
     <!--parent设置为启动页的theme-->
     <style name="AppTheme.customeTheme" parent="AppTheme">
-        <item name="android:windowBackground">@mipmap/ic_launcher</item>
+        <item name="android:windowBackground">@mipmap/icon_qi</item>
         <!--
                 <item name="android:windowFullscreen">?android:windowNoTitle</item>
 

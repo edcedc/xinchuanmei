@@ -13,6 +13,7 @@ import io.reactivex.Observable
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
+import org.json.JSONObject
 import retrofit2.http.*
 import java.util.*
 
@@ -49,11 +50,28 @@ interface ApiService{
         @Query("userId") userId : String? = User.getInstance().userId
     ): Observable<BaseResponseBean<Object>>
 
+    //是否关注用户
+    @GET("star/ifFollowUser")
+    fun starIfFollowUser(
+        @Query("sheUserId") sheUserId : String?,
+        @Query("userId") userId : String? = User.getInstance().userId
+    ): Observable<BaseResponseBean<Object>>
+
+    //关注用户
+    @POST("star/saveStarFollow")
+    fun starSaveStarFollow(
+        @Query("sheUserId") sheUserId : String?,
+        @Query("status") status : Int,
+        @Query("userId") userId : String? = User.getInstance().userId
+    ): Observable<BaseResponseBean<Object>>
+
     //获取文章列表
     @GET("article/getArticleList")
     fun articleGetArticleList(
+        @Query("like") like : String?,
         @Query("category") category : String?,
         @Query("page") pageNumber : Int,
+        @Query("type") type : Int?,
         @Query("size") pageSize : Int = Constants.pageSize,
         @Query("userId") userId : String? = User.getInstance().userId
     ): Observable<BaseResponseBean<BaseListBean<DataBean>>>
@@ -66,9 +84,19 @@ interface ApiService{
         @Query("userId") userId : String? = User.getInstance().userId
     ): Observable<BaseResponseBean<BaseListBean<DataBean>>>
 
+    //获取我收藏的星动态列表
+    @GET("star/getStarCollectList")
+    fun starGetStarCollectList(
+        @Query("page") pageNumber : Int,
+        @Query("size") pageSize : Int = Constants.pageSize,
+        @Query("userId") userId : String? = User.getInstance().userId
+    ): Observable<BaseResponseBean<BaseListBean<DataBean>>>
+
     //获取星动态列表
     @GET("star/getStarList")
     fun starGetStarList(
+        @Query("status") status : Int,
+        @Query("like") like : String?,
         @Query("page") pageNumber : Int,
         @Query("size") pageSize : Int = Constants.pageSize,
         @Query("userId") userId : String? = User.getInstance().userId
@@ -90,10 +118,27 @@ interface ApiService{
         @Query("userId") userId : String? = User.getInstance().userId
     ): Observable<BaseResponseBean<BaseListBean<DataBean>>>
 
+    //获取我关注的用户列表
+    @GET("star/getStarFollowList")
+    fun starGetStarFollowList(
+        @Query("page") pageNumber : Int,
+        @Query("size") pageSize : Int = Constants.pageSize,
+        @Query("userId") userId : String? = User.getInstance().userId
+    ): Observable<BaseResponseBean<BaseListBean<DataBean>>>
+
     //获取文章评论列表
     @GET("article/getArticleDiscussesList")
     fun articleGetArticleDiscussesList(
         @Query("articleId") articleId : String?,
+        @Query("page") pageNumber : Int,
+        @Query("size") pageSize : Int = Constants.pageSize,
+        @Query("userId") userId : String? = User.getInstance().userId
+    ): Observable<BaseResponseBean<BaseListBean<DataBean>>>
+
+    //获取星动态评论列表
+    @GET("star/getStarDiscussList")
+    fun starGetStarDiscussList(
+        @Query("starId") starId : String?,
         @Query("page") pageNumber : Int,
         @Query("size") pageSize : Int = Constants.pageSize,
         @Query("userId") userId : String? = User.getInstance().userId
@@ -119,10 +164,22 @@ interface ApiService{
     @GET("agree/getAgreeList")
     fun agreeGetAgreeList(): Observable<BaseResponseBean<ArrayList<DataBean>>>
 
+    //获取热门标签
+    @GET("article/getHotTabList")
+    fun articleGetHotTabList(): Observable<BaseResponseBean<ArrayList<DataBean>>>
+
     //文章赞踩
     @POST("article/articlePraise")
     fun articleArticlePraise(
         @Query("articleId") articleId : String?,
+        @Query("status") status : Int,
+        @Query("userId") userId : String? = User.getInstance().userId
+    ): Observable<BaseResponseBean<Object>>
+
+    //星动态点赞
+    @POST("star/saveStarPraise")
+    fun starSaveStarPraise(
+        @Query("starId") starId : String?,
         @Query("status") status : Int,
         @Query("userId") userId : String? = User.getInstance().userId
     ): Observable<BaseResponseBean<Object>>
@@ -137,6 +194,29 @@ interface ApiService{
         @Query("userId") userId : String? = User.getInstance().userId
     ): Observable<BaseResponseBean<DataBean>>
 
+    //获取随机一条创意
+    @GET("promotion/getOriginalityRandom")
+    fun promotionGetOriginalityRandom(
+    ): Observable<BaseResponseBean<DataBean>>
+
+    //保存编辑星动态评论
+    @POST("star/saveStarDiscuss")
+    fun starSaveStarDiscuss(
+        @Query("starId") starId : String?,
+        @Query("content") content : String?,
+        @Query("sheContent") sheContent : String?,
+        @Query("sheUserId") sheUserId : String?,
+        @Query("userId") userId : String? = User.getInstance().userId
+    ): Observable<BaseResponseBean<DataBean>>
+
+    //星动态评论点赞
+    @POST("star/saveStarDispra")
+    fun starSaveStarDispra(
+        @Query("discussId") articleId : String?,
+        @Query("status") status : Int,
+        @Query("userId") userId : String? = User.getInstance().userId
+    ): Observable<BaseResponseBean<Object>>
+
     //文章评论点赞
     @POST("article/saveArticleDispra")
     fun articleSaveArticleDispra(
@@ -145,6 +225,22 @@ interface ApiService{
         @Query("userId") userId : String? = User.getInstance().userId
     ): Observable<BaseResponseBean<Object>>
 
+    //天行数据转换详情链接  今日头条
+    @GET
+    fun htmltextIndex(
+        @Url url: String = "http://api.tianapi.com/blockchain/index",
+        @Query("key") key :String,
+        @Query("url") url1 :String
+    ): Observable<Object>
+
+    //天行数据转换详情链接
+    @GET
+    fun blockchainIndex(
+        @Url url: String = "http://api.tianapi.com/blockchain/index",
+        @Query("key") key :String,
+        @Query("url") url1 :String
+    ): Observable<Object>
+
     //删除一条评论(只是该条评论)
     @GET("article/delMyDiscuss")
     fun articleDelMyDiscuss(
@@ -152,9 +248,24 @@ interface ApiService{
         @Query("userId") userId : String? = User.getInstance().userId
     ): Observable<BaseResponseBean<Object>>
 
+    //删除一条星动态评论(只是该条评论)
+    @GET("star/delMyStarDiscuss")
+    fun starDelMyStarDiscuss(
+        @Query("id") articleId : String?,
+        @Query("userId") userId : String? = User.getInstance().userId
+    ): Observable<BaseResponseBean<Object>>
+
     //保存编辑联系说明
     @POST("agree/saveElation")
     fun articleSaveElation(
+        @Query("phone") phone : String?,
+        @Query("content") content : String?,
+        @Query("userId") userId : String? = User.getInstance().userId
+    ): Observable<BaseResponseBean<Object>>
+
+    //举报星动态
+    @POST("star/saveStarReport")
+    fun starSaveStarReport(
         @Query("phone") phone : String?,
         @Query("content") content : String?,
         @Query("userId") userId : String? = User.getInstance().userId
@@ -168,9 +279,18 @@ interface ApiService{
     ): Observable<BaseResponseBean<Object>>
 
     //举报评论
-    @GET("article/saveDiscussReport")
+    @POST("article/saveDiscussReport")
     fun articleSaveDiscussReport(
         @Query("discussId") discussId : String?,
+        @Query("content") content : String? = "违规数据",
+        @Query("userId") userId : String? = User.getInstance().userId
+    ): Observable<BaseResponseBean<Object>>
+
+    //举报星动态
+    @POST("star/saveStarReport")
+    fun starSaveStarReport(
+        @Query("starId") starId : String?,
+        @Query("phone") phone : String?,
         @Query("content") content : String? = "违规数据",
         @Query("userId") userId : String? = User.getInstance().userId
     ): Observable<BaseResponseBean<Object>>
@@ -179,6 +299,14 @@ interface ApiService{
     @POST("article/articleCollect")
     fun articleArticleCollect(
         @Query("ids") ids : String?,
+        @Query("status") status : Int,
+        @Query("userId") userId : String? = User.getInstance().userId
+    ): Observable<BaseResponseBean<Object>>
+
+    //星动态收藏
+    @POST("star/starCollect")
+    fun starStarCollect(
+        @Query("id") ids : String?,
         @Query("status") status : Int,
         @Query("userId") userId : String? = User.getInstance().userId
     ): Observable<BaseResponseBean<Object>>

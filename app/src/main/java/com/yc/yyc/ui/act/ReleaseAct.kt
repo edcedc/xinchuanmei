@@ -56,7 +56,7 @@ class ReleaseAct : BaseActivity(), ReleaseContract.View, View.OnClickListener {
         when (p0?.id) {
             R.id.btn_commit -> {
                 mPresenter.onRelease(
-                    if (cb_pub.isChecked == true) 1 else 2,
+                    if (cb_pub.isChecked == true) 2 else 1,
                     null,
                     et_content.text.toString(),
                     localMediaList

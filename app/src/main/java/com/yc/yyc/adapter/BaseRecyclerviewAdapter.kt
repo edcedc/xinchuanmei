@@ -5,9 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.blankj.utilcode.util.ToastUtils
 import com.yc.yyc.adapter.base.ViewHolder
+import com.yc.yyc.base.BaseFragment
 
 
-abstract class BaseRecyclerviewAdapter<T>(var act: Context, var listBean: ArrayList<T>) : RecyclerView.Adapter<ViewHolder>() {
+abstract class BaseRecyclerviewAdapter<T>(var act: Context, var root: BaseFragment, var listBean: ArrayList<T>) : RecyclerView.Adapter<ViewHolder>() {
 
     override fun getItemCount(): Int = listBean.size
 

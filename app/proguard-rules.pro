@@ -9,7 +9,7 @@
 
 # Add any project specific keep options here:
 
-# If your project uses WebView with JS, uncomment the following
+# If your project uses NOX5WebView with JS, uncomment the following
 # and specify the fully qualified class name to the JavaScript interface
 # class:
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
@@ -400,4 +400,16 @@ public void onEventMainThread(**);
     public <init>(android.content.Context);
     public <init>(android.content.Context, android.util.AttributeSet);
     public <init>(android.content.Context, android.util.AttributeSet, int);
+}
+#litepal
+-keep class org.litepal.** {
+    *;
+}
+
+-keep class * extends org.litepal.crud.DataSupport {
+    *;
+}
+
+-keep class * extends org.litepal.crud.LitePalSupport {
+    *;
 }

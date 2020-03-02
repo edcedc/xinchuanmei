@@ -20,6 +20,32 @@ import com.yc.yyc.ui.act.HtmlAct
  */
 class ContactPresenter  : BasePresenter<ContactContract.View>(), ContactContract.Presenter{
 
+    override fun onSaveStarReport(phone: String, content: String) {
+        if (StringUtils.isEmpty(phone) || StringUtils.isEmpty(content)) {
+            showToast(MyApplication.mContext?.resources?.getString(R.string.error_) as String)
+            return
+        }
+        mRootView?.showLoading()
+        var disposable = RetrofitManager.service.starSaveStarReport(phone, content)
+            .compose(SchedulerUtils.ioToMain())
+            .subscribe({ bean ->
+                mRootView?.apply {
+                    mRootView?.hideLoading()
+                    if (bean.code == ErrorStatus.SUCCESS){
+                        mRootView?.setSuccess()
+                    }
+                    showToast(bean.description)
+                }
+            }, { t ->
+                mRootView?.apply {
+                    //处理异常
+                    mRootView?.errorText(ExceptionHandle.handleException(t), ExceptionHandle.errorCode)
+                }
+            })
+
+        addSubscription(disposable)
+    }
+
     override fun onSaveElation(phone: String, content: String) {
         if (StringUtils.isEmpty(phone) || StringUtils.isEmpty(content)) {
             showToast(MyApplication.mContext?.resources?.getString(R.string.error_) as String)
@@ -32,8 +58,9 @@ class ContactPresenter  : BasePresenter<ContactContract.View>(), ContactContract
                 mRootView?.apply {
                     mRootView?.hideLoading()
                     if (bean.code == ErrorStatus.SUCCESS){
-
+                        mRootView?.setSuccess()
                     }
+                    showToast(bean.description)
                 }
             }, { t ->
                 mRootView?.apply {

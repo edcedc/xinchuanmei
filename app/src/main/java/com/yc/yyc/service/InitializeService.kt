@@ -10,6 +10,7 @@ import com.tencent.smtt.sdk.QbSdk
 import me.jessyan.autosize.AutoSize
 import me.jessyan.autosize.AutoSizeConfig
 import me.jessyan.autosize.onAdaptListener
+import org.litepal.LitePal
 
 import java.util.Locale
 
@@ -43,6 +44,7 @@ class InitializeService : IntentService("InitializeService") {
         LogUtils.e("performInit begin:" + System.currentTimeMillis())
         initAutoSizeConfig()
         initQbSdk()
+        LitePal.initialize(this)
 //        initShare()
         //        LogUtils.getConfig().setLogSwitch(false);
         // 设置崩溃后自动重启 APP

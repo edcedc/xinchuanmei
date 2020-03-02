@@ -11,11 +11,16 @@ import com.hazz.kotlinmvp.base.IListPresenter
 
 interface ThreeContract {
 
-    interface View : IBaseListView
+    interface View : IBaseListView {
+        fun setPraise(position: Int, praise: Int)
+        fun setFollow(i: Int)
+    }
 
     interface Presenter: IListPresenter<View> {
 
-         fun onRequest(pagerNumber: Int)
+        fun onRequest(pagerNumber: Int, like: String?)
+        fun onIfFollowUser(userId: String?)
+        fun onSaveStarFollow(userId: String?, followw: Int)
 
     }
 

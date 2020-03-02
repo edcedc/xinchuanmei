@@ -3,6 +3,7 @@ package com.yc.yyc.base
 import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Context
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
@@ -27,6 +28,7 @@ import com.yc.yyc.controller.UIHelper
 import com.yc.yyc.utils.cache.ShareSessionIdCache
 import me.yokeyword.fragmentation.SwipeBackLayout
 import me.yokeyword.fragmentation_swipeback.SwipeBackActivity
+import java.lang.reflect.Field
 
 /**
  * Created by Android Studio.
@@ -41,7 +43,7 @@ abstract class BaseActivity : SwipeBackActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         setContentView(getLayoutId())
         act = this
         // 初始化参数
@@ -53,6 +55,7 @@ abstract class BaseActivity : SwipeBackActivity() {
         initView()
         swipeBackLayout.setEdgeOrientation(SwipeBackLayout.EDGE_ALL)
     }
+
 
     /**
      * 加载布局

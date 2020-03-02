@@ -12,12 +12,14 @@ import com.hazz.kotlinmvp.base.IPresenter
 interface ContactContract{
 
     interface View : IBaseView {
+        fun setSuccess()
 
     }
 
     interface Presenter: IPresenter<View> {
 
         fun onSaveElation(phone : String, content: String)
+        fun onSaveStarReport(phone : String, content: String)
 
     }
 

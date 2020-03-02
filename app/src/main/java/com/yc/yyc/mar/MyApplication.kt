@@ -40,7 +40,7 @@ class MyApplication : Application(){
         super.onCreate()
         mContext = this;
         InitializeService.start(this)
-        CrashReport.initCrashReport(applicationContext, "5cd0cff6d3", true)
+        CrashReport.initCrashReport(applicationContext, "454975ed09", true)
     }
 
 }

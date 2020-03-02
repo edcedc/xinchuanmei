@@ -6,7 +6,6 @@ import com.hazz.kotlinmvp.net.exception.ErrorStatus
 import com.hazz.kotlinmvp.net.exception.ExceptionHandle
 import com.hazz.kotlinmvp.rx.scheduler.SchedulerUtils
 import com.yc.yyc.mvp.impl.NoticelContract
-import com.yc.yyc.mvp.impl.OneContract
 
 /**
  * Created by Android Studio.

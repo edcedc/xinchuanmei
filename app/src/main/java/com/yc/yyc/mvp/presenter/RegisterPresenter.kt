@@ -54,7 +54,14 @@ class RegisterPresenter : BasePresenter<RegisterContract.View>(), RegisterContra
         addSubscription(disposable)
     }
 
-    override fun onSure(phone: String, code: String, pwd: String, pwd1: String, type: Int) {
+    override fun onSure(
+        phone: String,
+        code: String,
+        pwd: String,
+        pwd1: String,
+        type: Int,
+        checked: Boolean
+    ) {
         if (StringUtils.isEmpty(phone) || StringUtils.isEmpty(code) || StringUtils.isEmpty(pwd) || StringUtils.isEmpty(pwd1)) {
             showToast(MyApplication.mContext?.resources?.getString(R.string.error_) as  String)
             return
@@ -69,6 +76,10 @@ class RegisterPresenter : BasePresenter<RegisterContract.View>(), RegisterContra
         }
         if (!pwd.equals(pwd1)){
             showToast(MyApplication.mContext?.resources?.getString(R.string.please_pwd2) as String)
+            return
+        }
+        if (!checked){
+            showToast(MyApplication.mContext?.resources?.getString(R.string.error_1) as String)
             return
         }
         mRootView?.showLoading()

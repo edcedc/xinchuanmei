@@ -25,7 +25,8 @@ interface RegisterContract {
             code: String,
             pwd: String,
             pwd1: String,
-            type: Int
+            type: Int,
+            checked: Boolean
         )
 
     }

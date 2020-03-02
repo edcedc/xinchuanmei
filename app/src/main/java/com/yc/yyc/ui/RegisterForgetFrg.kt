@@ -11,8 +11,10 @@ import android.view.View
 import com.yc.yyc.R
 import com.yc.yyc.base.BaseFragment
 import com.yc.yyc.base.User
+import com.yc.yyc.controller.UIHelper
 import com.yc.yyc.mvp.impl.RegisterContract
 import com.yc.yyc.mvp.presenter.RegisterPresenter
+import com.yc.yyc.ui.act.HtmlAct
 import com.yc.yyc.utils.CountDownTimerUtils
 import kotlinx.android.synthetic.main.f_reg_for.*
 import kotlinx.android.synthetic.main.f_reg_for.btn_commit
@@ -99,10 +101,10 @@ class RegisterForgetFrg : BaseFragment(), RegisterContract.View, View.OnClickLis
                 pop()
             }
             R.id.btn_commit ->{
-                mPresenter.onSure(et_phone.text.toString(), et_code.text.toString(), et_pwd.text.toString(), et_pwd1.text.toString(), type)
+                mPresenter.onSure(et_phone.text.toString(), et_code.text.toString(), et_pwd.text.toString(), et_pwd1.text.toString(), type, cb.isChecked)
             }
             R.id.tv_agreement ->{
-
+                UIHelper.startHtmlAct(HtmlAct.REGISTER)
             }
             R.id.tv_code ->{
                 mPresenter.onCode(et_phone?.text.toString(),type)}

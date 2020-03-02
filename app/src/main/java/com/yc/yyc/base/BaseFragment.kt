@@ -108,15 +108,15 @@ abstract class BaseFragment: SwipeBackFragment(){
         setTitle(false, title, null, img)
     }
 
-    protected fun setTitle(title : String){
+    protected fun setTitle(title : String?){
         setTitle(true, title, null, -1)
     }
-    protected fun setTitle(title : String, rightTitle: String?){
+    protected fun setTitle(title : String?, rightTitle: String?){
         setTitle(true, title, rightTitle, -1)
     }
 
 
-    private fun setTitle(isBack : Boolean, title : String, rightTitle : String?, rightImg : Int){
+    private fun setTitle(isBack : Boolean, title : String?, rightTitle : String?, rightImg : Int){
         setSofia(false)
         val mAppCompatActivity = activity as AppCompatActivity
         val toolbar = rootView?.findViewById<Toolbar>(R.id.toolbar)
@@ -179,7 +179,7 @@ abstract class BaseFragment: SwipeBackFragment(){
     }
 
     open fun showEmpty(listBean: ArrayList<DataBean>?) {
-        if (mLayoutStatusView != null && listBean != null && listBean.size == 0){
+        if (mLayoutStatusView != null && listBean?.size == 0){
             mHandler.sendEmptyMessage(handler_empty)
         }
     }
@@ -229,6 +229,14 @@ abstract class BaseFragment: SwipeBackFragment(){
                     }
                 }
             }
+        }
+    }
+
+    fun setMargins(v: View, l: Int, t: Int, r: Int, b: Int) {
+        if (v.layoutParams is ViewGroup.MarginLayoutParams) {
+            val p = v.layoutParams as ViewGroup.MarginLayoutParams
+            p.setMargins(l, t, r, b)
+            v.requestLayout()
         }
     }
 

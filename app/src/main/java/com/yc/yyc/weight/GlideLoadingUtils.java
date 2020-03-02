@@ -16,6 +16,7 @@ import com.blankj.utilcode.util.ScreenUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
@@ -67,12 +68,20 @@ public class GlideLoadingUtils {
     }
 
 
-    public static void loadRounded(Context act, Object url, ImageView imageView){
+    public static void loadRounded(Context act, Object url, AppCompatImageView imageView){
         //设置图片圆角角度
         RoundedCorners roundedCorners= new RoundedCorners(20);
         //通过RequestOptions扩展功能,override:采样率,因为ImageView就这么大,可以压缩图片,降低内存消耗
         RequestOptions options=RequestOptions.bitmapTransform(roundedCorners).override(300, 300);
         Glide.with(act).load(url).apply(options).into(imageView);
+    }
+    public static void loadRounded(Context act, Object url, AppCompatImageView imageView, boolean leftTop, boolean rightTop, boolean leftBottom, boolean rightBottom){
+        CornerTransform transformation = new CornerTransform(act, 20);
+        transformation.setExceptCorner(leftTop, rightTop, leftBottom, rightBottom);
+        Glide.with(act).load(url).
+                skipMemoryCache(true).
+                diskCacheStrategy(DiskCacheStrategy.NONE)
+                .transform(transformation).into(imageView);
     }
 
     public static void loadVideoScreenshot(final Context context, String uri, final ImageView imageView, long frameTimeMicros, final ImageView ivImg3) {

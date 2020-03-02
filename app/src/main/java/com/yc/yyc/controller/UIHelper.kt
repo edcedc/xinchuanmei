@@ -8,6 +8,7 @@ import com.yc.yyc.base.BaseFragment
 import com.yc.yyc.bean.DataBean
 import com.yc.yyc.ui.*
 import com.yc.yyc.ui.act.*
+import java.lang.reflect.Type
 
 
 /**
@@ -26,37 +27,66 @@ class UIHelper private constructor() {
             ActivityUtils.startActivity(MainActivity::class.java)
         }
 
-       fun startLoginAct() {
+        fun startLoginAct() {
             ActivityUtils.startActivity(LoginAct::class.java)
         }
+
+
 
         /**
          *  发布
          */
-       fun startReleaseAct() {
+        fun startReleaseAct() {
             ActivityUtils.startActivity(ReleaseAct::class.java)
+        }
+
+        /**
+         *  搜索
+         */
+        fun startSearchAct() {
+            ActivityUtils.startActivity(SearchAct::class.java)
         }
 
         /**
          *  各种H5
          */
-       fun startHtmlAct(type : Int) {
-           val bundle = Bundle()
-           bundle.putInt("type", type)
-           ActivityUtils.startActivity(bundle, HtmlAct::class.java)
+        fun startHtmlAct(type: Int) {
+            val bundle = Bundle()
+            bundle.putInt("type", type)
+            ActivityUtils.startActivity(bundle, HtmlAct::class.java)
         }
-       fun startHtmlAct(type : Int, url : String?) {
-           val bundle = Bundle()
-           bundle.putInt("type", type)
-           bundle.putString("url", url)
-           ActivityUtils.startActivity(bundle, HtmlAct::class.java)
+
+        fun startHtmlAct(type: Int, url: String?) {
+            val bundle = Bundle()
+            bundle.putInt("type", type)
+            bundle.putString("url", url)
+            ActivityUtils.startActivity(bundle, HtmlAct::class.java)
         }
-       fun startHtmlAct(type : Int, url : String?, title: String?) {
-           val bundle = Bundle()
-           bundle.putInt("type", type)
-           bundle.putString("url", url)
-           bundle.putString("title", title)
-           ActivityUtils.startActivity(bundle, HtmlAct::class.java)
+
+        fun startHtmlAct(type: Int, url: String?, title: String?) {
+            val bundle = Bundle()
+            bundle.putInt("type", type)
+            bundle.putString("url", url)
+            bundle.putString("title", title)
+            ActivityUtils.startActivity(bundle, HtmlAct::class.java)
+        }
+
+        /**
+         *   动态详情
+         */
+        fun startStarDetailsAct(bean: DataBean) {
+            val bundle = Bundle()
+            bundle.putString("bean", Gson().toJson(bean))
+            ActivityUtils.startActivity(bundle, StarDetailsAct::class.java)
+        }
+
+        /**
+         *  话题详情
+         */
+        fun startTopicAct(bean: DataBean) {
+            val bundle = Bundle()
+            bundle.putString("bean", Gson().toJson(bean))
+            ActivityUtils.startActivity(bundle, TopicAct::class.java)
         }
 
         /**
@@ -66,7 +96,7 @@ class UIHelper private constructor() {
             var bundle = Bundle()
             bundle.putString("video", video)
             bundle.putString("image", image)
-            ActivityUtils.startActivity(bundle, VideoAct::class.java)
+//            ActivityUtils.startActivity(bundle, VideoAct::class.java)
         }
 
         /**
@@ -150,11 +180,27 @@ class UIHelper private constructor() {
         }
 
         /**
+         *  关注用户列表
+         */
+        fun startFollowFrg(root: BaseFragment) {
+            var frg = FollowFrg()
+            var bundle = Bundle()
+            frg.setArguments(bundle)
+            val fragment = root.parentFragment
+            if (fragment == null) {
+                root.start(frg)
+            } else {
+                (root.parentFragment as MainFrg).startBrotherFragment(frg)
+            }
+        }
+
+        /**
          *  联系我们
          */
-        fun startContactFrg(root: BaseFragment) {
+        fun startContactFrg(root: BaseFragment, type: Int) {
             var frg = ContactFrg()
             var bundle = Bundle()
+            bundle.putInt("type", type)
             frg.setArguments(bundle)
             val fragment = root.parentFragment
             if (fragment == null) {
@@ -205,6 +251,34 @@ class UIHelper private constructor() {
             val fragment = root.parentFragment
             if (fragment == null) {
                 root.start(frg)
+            } else {
+                (root.parentFragment as MainFrg).startBrotherFragment(frg)
+            }
+        }
+
+        /**
+         *  第二个页面的跳转
+         */
+        fun startArticleDetailsTwoAct(bean: DataBean) {
+            val bundle = Bundle()
+            bundle.putString("bean", Gson().toJson(bean))
+            ActivityUtils.startActivity(bundle, ArticleDetailsTwoAct::class.java)
+        }
+
+        /**
+         *  用户发布的列表
+         */
+        fun startUserStarFrg(root: BaseFragment, like: String?, userId: String?) {
+            var frg = UserStarFrg()
+            var bundle = Bundle()
+            bundle.putString("like", like)
+            bundle.putString("userId", userId)
+            frg.setArguments(bundle)
+            val fragment = root.parentFragment
+            if (fragment == null) {
+                root.start(frg)
+            } else if (root.parentFragment is CollectFrg) {
+                (root.parentFragment as CollectFrg).startBrotherFragment(frg)
             } else {
                 (root.parentFragment as MainFrg).startBrotherFragment(frg)
             }

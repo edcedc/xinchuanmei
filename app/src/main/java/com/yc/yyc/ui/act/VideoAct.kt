@@ -1,3 +1,4 @@
+/*
 package com.yc.yyc.ui.act
 
 import android.os.Bundle
@@ -11,13 +12,15 @@ import com.yc.yyc.weight.GlideLoadingUtils
 import kotlinx.android.synthetic.main.a_video.*
 import java.util.ArrayList
 
+*/
 /**
  * Created by Android Studio.
  * User: ${edison}
  * Date: 2019/10/20
  * Time: 18:26
  *  视频播放
- */
+ *//*
+
 class VideoAct :  GSYBaseActivityDetail<ListGSYVideoPlayer>() {
 
     var videoUrl: String? = null
@@ -87,4 +90,4 @@ class VideoAct :  GSYBaseActivityDetail<ListGSYVideoPlayer>() {
         get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
 
 
-}
+}*/

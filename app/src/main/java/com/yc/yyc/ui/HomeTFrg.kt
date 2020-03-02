@@ -1,5 +1,6 @@
 package com.yc.yyc.ui
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.DefaultItemAnimator
@@ -86,7 +87,8 @@ class HomeTFrg : BaseFragment(), OneContract.View{
 
         tv_time.text = "今天" + "  " + TimeUtils.getNowString(SimpleDateFormat("MM-dd")) + "  "  + TimeUtils.getChineseWeek(TimeUtils.getNowDate())
         EventBus.getDefault().register(this)
-    }
+
+     }
 
     override fun setData(objects: Object) {
         var list = objects as List<DataBean>

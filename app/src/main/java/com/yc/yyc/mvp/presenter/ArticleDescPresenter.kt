@@ -1,5 +1,8 @@
 package com.yc.yyc.mvp.presenter
 
+import com.alibaba.fastjson.JSON
+import com.blankj.utilcode.util.LogUtils
+import com.google.gson.Gson
 import com.hazz.kotlinmvp.base.BaseListPresenter
 import com.hazz.kotlinmvp.net.RetrofitManager
 import com.hazz.kotlinmvp.net.exception.ErrorStatus
@@ -7,8 +10,12 @@ import com.hazz.kotlinmvp.net.exception.ExceptionHandle
 import com.hazz.kotlinmvp.rx.scheduler.SchedulerUtils
 import com.yc.yyc.base.User
 import com.yc.yyc.event.ArticleInEvent
-import com.yc.yyc.mvp.impl.ArticleDescContract
+import com.yc.yyc.mvp.impl.ArticleDetailsContract
+import okhttp3.MediaType
+import okhttp3.RequestBody
 import org.greenrobot.eventbus.EventBus
+import org.json.JSONObject
+import java.util.*
 
 /**
  * Created by Android Studio.
@@ -16,7 +23,55 @@ import org.greenrobot.eventbus.EventBus
  * Date: 2019/12/31
  * Time: 10:40
  */
-class ArticleDescPresenter : BaseListPresenter<ArticleDescContract.View>(), ArticleDescContract.Presenter{
+class ArticleDescPresenter : BaseListPresenter<ArticleDetailsContract.View>(), ArticleDetailsContract.Presenter{
+
+    override fun onBlockchain(articleId: String?, url: String?) {
+        if (articleId.equals("1")){
+            val disposable = RetrofitManager.service.htmltextIndex("http://api.tianapi.com/txapi/toutiaotxt/index", "fc6a81bedcacffd60b6708dac0a6ffa7", url.toString())
+                .compose(SchedulerUtils.ioToMain())
+                .subscribe({ bean ->
+                    mRootView?.apply {
+                        huilai(bean)
+                    }
+                }, { t ->
+                    mRootView?.apply {
+                        //处理异常
+                        mRootView?.errorText(ExceptionHandle.handleException(t), ExceptionHandle.errorCode)
+                    }
+
+                })
+            addSubscription(disposable)
+        }else{
+            val disposable = RetrofitManager.service.blockchainIndex("http://api.tianapi.com/txapi/htmltext/index", "fc6a81bedcacffd60b6708dac0a6ffa7", url.toString())
+                .compose(SchedulerUtils.ioToMain())
+                .subscribe({ bean ->
+                    mRootView?.apply {
+                        huilai(bean)
+                    }
+                }, { t ->
+                    mRootView?.apply {
+                        //处理异常
+                        mRootView?.errorText(ExceptionHandle.handleException(t), ExceptionHandle.errorCode)
+                    }
+
+                })
+            addSubscription(disposable)
+        }
+    }
+
+    private fun huilai(obj :Object){
+        mRootView?.hideLoading()
+        val jsonString = Gson().toJson(obj)
+        val bean = JSONObject(jsonString)
+        if (bean.optInt("code") == 200){
+            val newslist = bean.optJSONArray("newslist")
+            if (newslist != null && newslist.length() != 0){
+                val obj = newslist.optJSONObject(0)
+                mRootView!!.setDesc(obj)
+            }
+        }
+    }
+
     override fun onSaveDiscussReport(id: String?) {
         val disposable = RetrofitManager.service.articleSaveDiscussReport(id)
             .compose(SchedulerUtils.ioToMain())
@@ -84,7 +139,7 @@ class ArticleDescPresenter : BaseListPresenter<ArticleDescContract.View>(), Arti
         praise: Int,
         discussId: String?
     ) {
-        mRootView?.showLoading()
+//        mRootView?.showLoading()
         val disposable = RetrofitManager.service.articleSaveArticleDispra(discussId, praise)
             .compose(SchedulerUtils.ioToMain())
             .subscribe({ bean ->
@@ -136,7 +191,7 @@ class ArticleDescPresenter : BaseListPresenter<ArticleDescContract.View>(), Arti
 
 
     override fun onPraise(articleId: String?, praise: Int) {
-        var praise = if (praise == 0) 1 else 0
+        var praise = if (praise == 1) 2 else 1
         mRootView?.showLoading()
         val disposable = RetrofitManager.service.articleArticlePraise(articleId, praise)
             .compose(SchedulerUtils.ioToMain())
@@ -185,15 +240,15 @@ class ArticleDescPresenter : BaseListPresenter<ArticleDescContract.View>(), Arti
     }
 
     override fun onBanner() {
-        val disposable = RetrofitManager.service.promotionGetOriginalityListRandom()
+        val disposable = RetrofitManager.service.promotionGetOriginalityRandom()
             .compose(SchedulerUtils.ioToMain())
             .subscribe({ bean ->
                 mRootView?.apply {
-                    mRootView?.hideLoading()
+//                    mRootView?.hideLoading()
                     if (bean.code == ErrorStatus.SUCCESS){
                         var data = bean.result
-                        if (data != null){
-                            mRootView?.setBanner(data[0])
+                        if (data != null) {
+                            mRootView?.setBanner(data)
                         }
                     }
                 }
@@ -212,7 +267,7 @@ class ArticleDescPresenter : BaseListPresenter<ArticleDescContract.View>(), Arti
             .compose(SchedulerUtils.ioToMain())
             .subscribe({ bean ->
                 mRootView?.apply {
-                    mRootView?.hideLoading()
+//                    hideLoading()
                     if (bean.code == ErrorStatus.SUCCESS){
                         var data = bean.result
                         val list = data?.content
@@ -230,6 +285,10 @@ class ArticleDescPresenter : BaseListPresenter<ArticleDescContract.View>(), Arti
 
             })
         addSubscription(disposable)
+    }
+
+    private fun toRequestBody(value: String): RequestBody {
+        return RequestBody.create(MediaType.parse("text/plain"), value)
     }
 
 }

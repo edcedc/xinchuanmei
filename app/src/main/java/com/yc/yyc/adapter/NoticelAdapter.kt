@@ -17,7 +17,7 @@ import com.yc.yyc.ui.act.HtmlAct
  * Date: 2019/12/31
  * Time: 9:13
  */
-class NoticelAdapter (act: Context, root: BaseFragment, listBean: List<DataBean>) : BaseRecyclerviewAdapter<DataBean>(act, listBean as ArrayList<DataBean>) {
+class NoticelAdapter (act: Context, root: BaseFragment, listBean: List<DataBean>) : BaseRecyclerviewAdapter<DataBean>(act, root, listBean as ArrayList<DataBean>) {
 
     override fun onCreateViewHolde(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.i_noticel, parent, false))
@@ -31,5 +31,7 @@ class NoticelAdapter (act: Context, root: BaseFragment, listBean: List<DataBean>
             UIHelper.startHtmlAct(HtmlAct.DESC, bean.content, bean.title)
         }
     }
+
+
 
 }

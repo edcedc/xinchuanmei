@@ -3,6 +3,7 @@ package com.yc.yyc.mvp.impl
 import com.hazz.kotlinmvp.base.IBaseListView
 import com.hazz.kotlinmvp.base.IListPresenter
 import com.yc.yyc.bean.DataBean
+import org.json.JSONObject
 
 /**
  * Created by Android Studio.
@@ -10,7 +11,7 @@ import com.yc.yyc.bean.DataBean
  * Date: 2019/12/31
  * Time: 10:40
  */
-interface ArticleDescContract {
+interface ArticleDetailsContract {
 
     interface View : IBaseListView {
 
@@ -21,6 +22,7 @@ interface ArticleDescContract {
         fun setDiscuss(i: Int, result: DataBean?)
         fun setSaveArticleDispra(position: Int, praise: Int)
         fun setDelMyDiscuss(position: Int)
+        fun setDesc(bean: JSONObject)
     }
 
     interface Presenter: IListPresenter<View> {
@@ -46,6 +48,7 @@ interface ArticleDescContract {
         fun onDelMyDiscuss(position: Int, id: String)
         fun onSaveHistory(articleId: String?)
         fun onSaveDiscussReport(id: String?)
+        fun onBlockchain(articleId: String?, url: String?)
 
     }
 

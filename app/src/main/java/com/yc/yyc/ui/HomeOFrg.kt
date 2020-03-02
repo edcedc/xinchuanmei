@@ -5,6 +5,7 @@ import android.view.View
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.blankj.utilcode.util.LogUtils
+import com.blankj.utilcode.util.StringUtils
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener
 import com.yc.yyc.R
@@ -81,12 +82,12 @@ class HomeOFrg : BaseFragment(), OneContract.View {
 
     override fun setData(objects: Object) {
         var list = objects as List<DataBean>
-        if (pagerNumber == 1){
+        if (pagerNumber == 1) {
             for (i in 0..list.lastIndex) {
                 val bean = list[i]
                 listBean.add(i, bean)
             }
-        }else{
+        } else {
             listBean.addAll(list)
         }
         adapter?.notifyDataSetChanged()
@@ -103,7 +104,8 @@ class HomeOFrg : BaseFragment(), OneContract.View {
     override fun setBanner(list: ArrayList<DataBean>) {
         val list1 = ArrayList<String>()
         for (bean in list) {
-            list1.add(CloudApi.SERVLET_IMG_URL + bean.picUrl)
+            val split = bean.picUrl!!.split(",")
+            list1.add(CloudApi.SERVLET_IMG_URL + split[0])
         }
         banner.initBanner(list1, true)//开启3D画廊效果
             .addPageMargin(10, 50)//参数1page之间的间距,参数2中间item距离边界的间距
@@ -114,7 +116,14 @@ class HomeOFrg : BaseFragment(), OneContract.View {
             .finishConfig()//这句必须加
             .addBannerListener({ position ->
                 val bean = list[position]
-                UIHelper.startHtmlAct(HtmlAct.ADV, bean.url, bean.source)
+                val type = bean.type
+                if (bean.ifAdvert == 0 && type == 1) {
+                    UIHelper.startHtmlAct(HtmlAct.ADV, bean.content, bean.title)
+                } else if (bean.ifAdvert == 0 && type == 2) {
+                    UIHelper.startHtmlAct(HtmlAct.DESC, bean.content, bean.title)
+                } else {
+                    UIHelper.startHtmlAct(HtmlAct.ADV, bean.url, bean.source)
+                }
             })
     }
 
@@ -132,17 +141,17 @@ class HomeOFrg : BaseFragment(), OneContract.View {
 
     @Subscribe
     fun onArticleInEvent(event: ArticleInEvent) {
-        for (i in 0..listBean.size){
+        for (i in listBean.indices) {
             val bean = listBean[i]
-            if (event.articleId.equals(bean.articleId)){
-                if (event.cIsTrue != -1){
+            if (event.articleId.equals(bean.articleId)) {
+                if (event.cIsTrue != -1) {
                     bean.cIsTrue = event.cIsTrue
                 }
-                if (event.praise != -1){
+                if (event.praise != -1) {
                     bean.praise = event.praise
-                    if (event.praise == 1){
+                    if (event.praise == 1) {
                         bean.whitePraise += 1
-                    }else{
+                    } else {
                         bean.whitePraise -= 1
                     }
                 }

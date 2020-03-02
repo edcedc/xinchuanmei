@@ -20,7 +20,6 @@ class HtmlPresenter  : BasePresenter<HtmlContract.View>(), HtmlContract.Presente
 
     override fun onUrl(type: Int) {
         informationAgreement(type)
-
     }
 
     fun informationAgreement(type: Int) {
@@ -38,6 +37,10 @@ class HtmlPresenter  : BasePresenter<HtmlContract.View>(), HtmlContract.Presente
                             HtmlAct.USER_AGREEMENT ->{
                                 val dataBean = data!![0]
                                 mRootView?.setUrl(MyApplication.mContext.resources.getString(R.string.yy10), dataBean?.context)
+                            }
+                            HtmlAct.REGISTER ->{
+                                val dataBean = data!![4]
+                                mRootView?.setUrl("发布协议", dataBean?.context)
                             }
                         }
                     }

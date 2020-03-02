@@ -33,6 +33,7 @@ class HtmlAct : BaseActivity(), HtmlContract.View {
         val DESC = 2//查看详情
         val ADV = 3//平台广告
         val ABOUT = 4//关于我们
+        val REGISTER = 5//注册协议
 
     }
 
@@ -53,7 +54,7 @@ class HtmlAct : BaseActivity(), HtmlContract.View {
             DESC ->{
                 setUrl(title ?: "", url)
             }
-            ABOUT, USER_AGREEMENT ->{
+            ABOUT, USER_AGREEMENT, REGISTER ->{
                 mPresenter.onUrl(type)
             }
             else ->{

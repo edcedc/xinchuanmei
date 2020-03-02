@@ -11,10 +11,12 @@ import com.hazz.kotlinmvp.view.recyclerview.adapter.BaseRecyclerviewAdapter
 import com.luck.picture.lib.entity.LocalMedia
 import com.yc.yyc.R
 import com.yc.yyc.adapter.base.ViewHolder
+import com.yc.yyc.base.BaseActivity
 import com.yc.yyc.base.BaseFragment
+import com.yc.yyc.base.User
 import com.yc.yyc.bean.DataBean
 import com.yc.yyc.controller.CloudApi
-import com.yc.yyc.mar.MyApplication.Companion.mContext
+import com.yc.yyc.controller.UIHelper
 import com.yc.yyc.utils.PictureSelectorTool
 import com.yc.yyc.weight.CircleImageView
 import com.yc.yyc.weight.GlideLoadingUtils
@@ -26,30 +28,17 @@ import com.yc.yyc.weight.WithScrollGridView
  * Date: 2020/1/3
  * Time: 16:34
  */
-class ThreeAdapter(act: Context, root: BaseFragment, listBean: List<DataBean>) : BaseRecyclerviewAdapter<DataBean>(act, listBean as ArrayList<DataBean>) {
+class ThreeAdapter(
+    act: Context,
+    root: BaseFragment,
+    listBean: List<DataBean>,
+    type: Int
+) : BaseRecyclerviewAdapter<DataBean>(act, root, listBean as ArrayList<DataBean>) {
 
-    var IMG_S = 0;
-    var IMG_D = 1;
 
-    override fun getItemViewType(position: Int): Int {
-        val bean = listBean[position]
-        val split = bean.picUrl?.split(",")
-        if (split?.size == 1){
-            return IMG_S
-        }else{
-            return IMG_D
-        }
-    }
+    var type = type
 
     override fun onCreateViewHolde(parent: ViewGroup, viewType: Int): ViewHolder {
-       /* when (viewType){
-            IMG_S ->{
-                return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.i_star, parent, false))
-            }
-            else ->{
-                return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.i_home_o, parent, false))
-            }
-        }*/
         return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.i_star, parent, false))
     }
 
@@ -105,22 +94,38 @@ class ThreeAdapter(act: Context, root: BaseFragment, listBean: List<DataBean>) :
             gridView.setOnItemClickListener { adapterView, view, i, l ->
                 PictureSelectorTool.PictureMediaType(act as Activity, localMediaList, i)
             }
-                if (list.size == 1) {
-                    gridView.numColumns = 1
-                } else {
-                    gridView.numColumns = 3
-                }
-        }
-
-        iv_head.setOnClickListener {
-            if (bean.anonymous != 2){
-
+            if (list.size == 1) {
+                gridView.numColumns = 1
+            } else {
+                gridView.numColumns = 3
             }
         }
 
-        viewHolder.itemView.setOnClickListener {
-
+        tv_zan.setOnClickListener {
+            if (!(act as BaseActivity).isLogin())return@setOnClickListener
+            listener!!.onStarPraise(position, bean.starId, bean.praise)
         }
+
+        iv_head.setOnClickListener {
+            if (bean.userId.equals(User.getInstance().userId))return@setOnClickListener
+            if (bean.anonymous != 2 && type != 2){
+                UIHelper.startUserStarFrg(root, bean.userNickName, bean.userId)
+            }
+        }
+
+        viewHolder .itemView.setOnClickListener {
+            UIHelper.startStarDetailsAct(bean)
+        }
+    }
+
+    var listener: OnClickListener? = null
+
+    interface OnClickListener {
+        fun onStarPraise(position: Int, id: String?, isPraise: Int)
+    }
+
+    fun setOnClickListener(listener: OnClickListener) {
+        this.listener = listener
     }
 
 }

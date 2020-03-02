@@ -33,7 +33,6 @@
 
     <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_desc"
-            android:text="adasdas "
             app:layout_constraintBottom_toBottomOf="@id/iv_img"
             android:drawablePadding="@dimen/px20"
             style="@style/Tv12gray"/>

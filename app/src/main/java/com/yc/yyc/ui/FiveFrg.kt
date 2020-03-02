@@ -68,13 +68,13 @@ class FiveFrg : BaseFragment(), View.OnClickListener{
                 UIHelper.startNoticelFrg(this)
             }
             R.id.tv_follow ->{
-
+                UIHelper.startFollowFrg(this)
             }
             R.id.tv_history ->{
                 UIHelper.startHistoryFrg(this)
             }
             R.id.tv_about ->{
-                UIHelper.startContactFrg(this)
+                UIHelper.startContactFrg(this, 1)
             }
         }
     }

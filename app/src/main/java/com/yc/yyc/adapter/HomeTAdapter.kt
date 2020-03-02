@@ -15,12 +15,13 @@ import com.yc.yyc.bean.DataBean
 import com.yc.yyc.controller.CloudApi
 import com.yc.yyc.controller.UIHelper
 import com.yc.yyc.ui.act.HtmlAct
-import com.yc.yyc.weight.GlideLoadingUtils
-import com.yc.yyc.weight.WithScrollGridView
 import android.view.ViewTreeObserver
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.yc.yyc.R
 import com.yc.yyc.base.BaseActivity
+import com.blankj.utilcode.util.ScreenUtils
+import com.yc.yyc.utils.NumberFormatUtils
+import com.yc.yyc.weight.*
 
 
 /**
@@ -29,7 +30,7 @@ import com.yc.yyc.base.BaseActivity
  * Date: 2019/12/27
  * Time: 19:01
  */
-class   HomeTAdapter(act: Context, root: BaseFragment, listBean: List<DataBean>) : BaseRecyclerviewAdapter<DataBean>(act, listBean as ArrayList<DataBean>) {
+class HomeTAdapter(act: Context, root: BaseFragment, listBean: List<DataBean>) : BaseRecyclerviewAdapter<DataBean>(act, root, listBean as ArrayList<DataBean>) {
 
     var ARTICLE_TYPE = 0;
     var ADV_TYPE_1 = 1;
@@ -38,13 +39,13 @@ class   HomeTAdapter(act: Context, root: BaseFragment, listBean: List<DataBean>)
     override fun onCreateViewHolde(parent: ViewGroup, viewType: Int): ViewHolder {
         when (viewType){
             ADV_TYPE_1 ->{
-                return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.i_home_o_s, parent, false))
+                return ViewHolder(LayoutInflater.from(parent.context).inflate(com.yc.yyc.R.layout.i_home_o_s, parent, false))
             }
             ADV_TYPE_2 ->{
-                return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.i_home_o_d, parent, false))
+                return ViewHolder(LayoutInflater.from(parent.context).inflate(com.yc.yyc.R.layout.i_home_o_d, parent, false))
             }
             else ->{
-                return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.i_home_t, parent, false))
+                return ViewHolder(LayoutInflater.from(parent.context).inflate(com.yc.yyc.R.layout.i_home_t, parent, false))
             }
         }
     }
@@ -52,9 +53,9 @@ class   HomeTAdapter(act: Context, root: BaseFragment, listBean: List<DataBean>)
     override fun getItemViewType(position: Int): Int {
         val bean = listBean[position]
         val split = bean.picUrl?.split(",")
-        if (bean.articleId == null && split?.size == 1){
+        if (bean.articleId == null && split != null && split?.size == 1){
             return ADV_TYPE_1
-        }else if (bean.articleId == null && split?.size!! > 1){
+        }else if (bean.articleId == null && split != null  && split?.size!! > 1){
             return ADV_TYPE_2
         }else{
             return ARTICLE_TYPE
@@ -67,7 +68,7 @@ class   HomeTAdapter(act: Context, root: BaseFragment, listBean: List<DataBean>)
             ADV_TYPE_1 ->{
                 viewHolder.setText(R.id.tv_title, bean?.title)
                 viewHolder.setText(R.id.tv_desc, bean?.description)
-                GlideLoadingUtils.loadRounded(act, CloudApi.SERVLET_IMG_URL + bean.picUrl, viewHolder.getView<AppCompatImageView>(
+                GlideLoadingUtils.load(act, CloudApi.SERVLET_IMG_URL + bean.picUrl, viewHolder.getView<AppCompatImageView>(
                     R.id.iv_img))
             }
             ADV_TYPE_2 ->{
@@ -95,13 +96,17 @@ class   HomeTAdapter(act: Context, root: BaseFragment, listBean: List<DataBean>)
                     viewHolder.setText(R.id.tv_time, createTime as String)
                 }
                 viewHolder.setText(R.id.tv_title, bean.title as String)
-                val tv_content = viewHolder.getView<AppCompatTextView>(R.id.tv_content)
-                tv_content.text = bean?.content
+
+                var tv_content = viewHolder.getView<AppCompatTextView>(R.id.tv_content)
+                tv_content.text = bean.content
+
                 val tv_zan = viewHolder.getView<AppCompatTextView>(R.id.tv_zan)
                 val tv_cai = viewHolder.getView<AppCompatTextView>(R.id.tv_cai)
-                viewHolder.setText(R.id.tv_zan, "利好(" + bean.whitePraise +
+                viewHolder.setText(
+                    R.id.tv_zan, "利好(" + NumberFormatUtils.formatNum(bean.whitePraise, false).toString() +
                         ")")
-                viewHolder.setText(R.id.tv_cai, "利空(" + bean.blackPraise +
+                viewHolder.setText(
+                    R.id.tv_cai, "利空(" + NumberFormatUtils.formatNum(bean.blackPraise, false).toString() +
                         ")")
 
                 if (bean.praise == 1){
@@ -142,8 +147,14 @@ class   HomeTAdapter(act: Context, root: BaseFragment, listBean: List<DataBean>)
                     }
                     listener!!.onArticlePraise(position, bean.articleId, 2)
                 }
+                viewHolder.getView<AppCompatTextView>(R.id.tv_comment).setOnClickListener {
+                    UIHelper.startArticleDetailsTwoAct(bean)
+                }
             }
+
         }
+
+
 
         viewHolder.itemView.setOnClickListener {
             when(getItemViewType(position)){
@@ -165,6 +176,19 @@ class   HomeTAdapter(act: Context, root: BaseFragment, listBean: List<DataBean>)
 
     fun setOnClickListener(listener: OnClickListener) {
         this.listener = listener
+    }
+
+    /**
+     * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
+     */
+    fun dp2px(context: Context, dpValue: Int): Int {
+        var res = 0
+        val scale = context.resources.displayMetrics.density
+        if (dpValue < 0)
+            res = -(-dpValue * scale + 0.5f).toInt()
+        else
+            res = (dpValue * scale + 0.5f).toInt()
+        return res
     }
 
 }

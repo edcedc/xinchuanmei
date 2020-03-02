@@ -41,8 +41,8 @@ public class BannerViewPager extends RelativeLayout implements ViewPager.OnPageC
     private AutoRollRunnable mAutoRollRunnable = null;
     private int mRollTime=5000;
 
-    private int resId_piont_press= R.mipmap.ic_banner_point_press;
-    private int resId_piont=R.mipmap.ic_banner_point;
+    private int resId_piont_press= R.mipmap.ic_hui;
+    private int resId_piont=R.mipmap.ic_hong;
     private boolean isPoint=false;//开启指示器
 
     public static interface OnClickBannerListener {

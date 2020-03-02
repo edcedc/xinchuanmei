@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
+import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.StringUtils
 import com.flyco.roundview.RoundTextView
 import com.hazz.kotlinmvp.view.recyclerview.adapter.BaseRecyclerviewAdapter
@@ -24,7 +25,7 @@ import com.yc.yyc.weight.GlideLoadingUtils
  * Date: 2019/12/31
  * Time: 11:31
  */
-class ArticleCommentAdapter (act: Context, root: BaseFragment, listBean: List<DataBean>) : BaseRecyclerviewAdapter<DataBean>(act, listBean as ArrayList<DataBean>) {
+class ArticleCommentAdapter (act: Context, root: BaseFragment, listBean: List<DataBean>) : BaseRecyclerviewAdapter<DataBean>(act, root, listBean as ArrayList<DataBean>) {
 
     override fun onCreateViewHolde(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.i_article_comment, parent, false))
@@ -65,17 +66,19 @@ class ArticleCommentAdapter (act: Context, root: BaseFragment, listBean: List<Da
             if (bean.state == 1){
                 return@setOnClickListener
             }
-            listener!!.onArticlePraise(position, bean.articleId, 1, bean.discussId)
+            listener!!.onArticlePraise(position, if (bean.articleId == null) bean.starId else bean.articleId, 1, bean.discussId)
         }
         tv_cai.setOnClickListener {
             if (!(act as BaseActivity).isLogin())return@setOnClickListener
             if (bean.state == 2){
                 return@setOnClickListener
             }
-            listener!!.onArticlePraise(position, bean.articleId, 2, bean.discussId)
+            listener!!.onArticlePraise(position, if (bean.articleId == null) bean.starId else bean.articleId, 2, bean.discussId)
         }
         viewHolder.itemView.setOnClickListener {
-            listener!!.onArticleComment(position, bean.articleId, bean.discussId, bean.userId,
+//            LogUtils.e(position, if (bean.articleId == null) bean.starId else bean.articleId, bean.discussId, bean.userId,
+//                if (bean.sheContent == null) bean.content else bean.sheContent)
+            listener!!.onArticleComment(position, if (bean.articleId == null) bean.starId else bean.articleId, bean.discussId, bean.userId,
                 if (bean.sheContent == null) bean.content else bean.sheContent
             )
         }

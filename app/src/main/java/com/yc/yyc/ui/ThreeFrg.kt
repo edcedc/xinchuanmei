@@ -2,20 +2,20 @@ package com.yc.yyc.ui
 
 import android.os.Bundle
 import android.view.View
-import androidx.recyclerview.widget.DividerItemDecoration
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener
 import com.yc.yyc.R
-import com.yc.yyc.adapter.NoticelAdapter
 import com.yc.yyc.adapter.ThreeAdapter
+import com.yc.yyc.base.BaseActivity
 import com.yc.yyc.base.BaseFragment
 import com.yc.yyc.bean.DataBean
 import com.yc.yyc.controller.UIHelper
+import com.yc.yyc.event.StarInEvent
 import com.yc.yyc.mvp.impl.ThreeContract
-import com.yc.yyc.mvp.presenter.NoticelPresenter
 import com.yc.yyc.mvp.presenter.ThreePresenter
-import com.yc.yyc.weight.LinearDividerItemDecoration
 import kotlinx.android.synthetic.main.f_three.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
 
 /**
  * Created by Android Studio.
@@ -29,7 +29,7 @@ class ThreeFrg : BaseFragment(), ThreeContract.View, View.OnClickListener{
 
     val listBean = ArrayList<DataBean>()
 
-    val adapter by lazy { ThreeAdapter(activity!!, this, listBean)}
+    val adapter by lazy { ThreeAdapter(activity!!, this, listBean, 1)}
 
     override fun getLayoutId(): Int = R.layout.f_three
 
@@ -48,18 +48,29 @@ class ThreeFrg : BaseFragment(), ThreeContract.View, View.OnClickListener{
         refreshLayout?.setOnRefreshLoadMoreListener(object : OnRefreshLoadMoreListener {
             override fun onRefresh(refreshLayout: RefreshLayout) {
                 pagerNumber = 1
-                mPresenter.onRequest(pagerNumber)
+                mPresenter.onRequest(pagerNumber, null)
             }
 
             override fun onLoadMore(refreshLayout: RefreshLayout) {
                 pagerNumber += 1
-                mPresenter.onRequest(pagerNumber)
+                mPresenter.onRequest(pagerNumber, null)
             }
         })
+        adapter.setOnClickListener(object : ThreeAdapter.OnClickListener{
+            override fun onStarPraise(position: Int, id: String?, isPraise: Int) {
+                mPresenter.onPraise(position, id, isPraise)
+            }
+        })
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onSupportVisible() {
+        super.onSupportVisible()
+        setSofia(true)
     }
 
     override fun setData(objects: Object) {
-        var list = objects as List<DataBean>
+        var list = objects as ArrayList<DataBean>
         if (pagerNumber == 1){
             listBean.clear()
         }
@@ -75,12 +86,54 @@ class ThreeFrg : BaseFragment(), ThreeContract.View, View.OnClickListener{
     override fun onClick(p0: View?) {
         when(p0?.id){
             R.id.iv_release->{
+                if (!(activity as BaseActivity).isLogin())return
                 UIHelper.startReleaseAct()
             }
             R.id.tv_search ->{
-
+                UIHelper.startSearchAct()
             }
         }
+    }
+
+    override fun setPraise(position: Int, praise: Int) {
+        val bean = listBean.get(position)
+        if (praise == 1){
+            bean.whitePraise += 1
+        }else{
+            bean.whitePraise -= 1
+        }
+        bean.praise = praise
+        adapter.notifyItemChanged(position)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        EventBus.getDefault().unregister(this)
+    }
+
+    @Subscribe
+    fun onStarInEvent(event: StarInEvent) {
+        for (i in 0..listBean.size){
+            val bean = listBean[i]
+            if (event.id.equals(bean.starId)){
+                if (event.cIsTrue != -1){
+                    bean.cIsTrue = event.cIsTrue
+                }
+                if (event.praise != -1){
+                    bean.praise = event.praise
+                    if (event.praise == 1){
+                        bean.whitePraise += 1
+                    }else{
+                        bean.whitePraise -= 1
+                    }
+                }
+                break
+            }
+        }
+    }
+
+    override fun setFollow(i: Int) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
 }

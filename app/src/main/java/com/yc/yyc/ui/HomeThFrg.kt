@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import com.blankj.utilcode.util.LogUtils
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener
+import com.yc.yyc.R
 import com.yc.yyc.adapter.HomeOAdapter
 import com.yc.yyc.base.BaseFragment
 import com.yc.yyc.bean.DataBean
@@ -16,14 +17,8 @@ import com.yc.yyc.mvp.presenter.OnePresenter
 import com.yc.yyc.weight.LinearDividerItemDecoration
 import kotlinx.android.synthetic.main.f_home_o.*
 import java.util.ArrayList
-import android.widget.Toast
-import android.widget.TextView
-import com.sunfusheng.marqueeview.MarqueeView
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import android.R
 import com.yc.yyc.controller.UIHelper
 import com.yc.yyc.event.ArticleInEvent
-import com.yc.yyc.event.SwitchingChannelInEvent
 import com.yc.yyc.ui.act.HtmlAct
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -47,7 +42,7 @@ class HomeThFrg : BaseFragment(), OneContract.View {
 
     var isRequest = true
 
-    override fun getLayoutId(): Int = com.yc.yyc.R.layout.f_home_th
+    override fun getLayoutId(): Int = R.layout.f_home_th
 
     override fun initParms(bundle: Bundle) {
         id = bundle.getString("id")
@@ -72,7 +67,7 @@ class HomeThFrg : BaseFragment(), OneContract.View {
         refreshLayout?.setOnRefreshLoadMoreListener(object : OnRefreshLoadMoreListener {
             override fun onRefresh(refreshLayout: RefreshLayout) {
                 pagerNumber = 1
-                mPresenter.onBanner()
+//                mPresenter.onBanner()
                 mPresenter.onRequest(id, pagerNumber)
             }
 
@@ -108,7 +103,8 @@ class HomeThFrg : BaseFragment(), OneContract.View {
     override fun setBanner(list: ArrayList<DataBean>) {
         val list1 = ArrayList<String>()
         for (bean in list) {
-            list1.add(CloudApi.SERVLET_IMG_URL + bean.picUrl)
+            val split = bean.picUrl!!.split(",")
+            list1.add(CloudApi.SERVLET_IMG_URL + split[0])
         }
         banner.initBanner(list1, true)//开启3D画廊效果
             .addPageMargin(10, 50)//参数1page之间的间距,参数2中间item距离边界的间距
@@ -137,7 +133,7 @@ class HomeThFrg : BaseFragment(), OneContract.View {
 
     @Subscribe
     fun onArticleInEvent(event: ArticleInEvent) {
-        for (i in 0..listBean.size){
+        for (i in listBean.indices){
             val bean = listBean[i]
             if (event.articleId.equals(bean.articleId)){
                 if (event.cIsTrue != -1){

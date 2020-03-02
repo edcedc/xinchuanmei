@@ -15,8 +15,10 @@ import com.yc.yyc.bean.DataBean
 import com.yc.yyc.controller.CloudApi
 import com.yc.yyc.controller.UIHelper
 import com.yc.yyc.ui.act.HtmlAct
+import com.yc.yyc.utils.NumberFormatUtils
 import com.yc.yyc.weight.GlideLoadingUtils
 import com.yc.yyc.weight.WithScrollGridView
+import kotlin.math.roundToInt
 
 /**
  * Created by Android Studio.
@@ -24,7 +26,7 @@ import com.yc.yyc.weight.WithScrollGridView
  * Date: 2019/12/27
  * Time: 19:01
  */
-class HomeOAdapter(act: Context, root: BaseFragment, listBean: List<DataBean>) : BaseRecyclerviewAdapter<DataBean>(act, listBean as ArrayList<DataBean>) {
+class HomeOAdapter(act: Context, root: BaseFragment, listBean: List<DataBean>) : BaseRecyclerviewAdapter<DataBean>(act, root, listBean as ArrayList<DataBean>) {
 
     var ARTICLE_TYPE = 0;
     var ADV_TYPE_1 = 1;
@@ -47,9 +49,9 @@ class HomeOAdapter(act: Context, root: BaseFragment, listBean: List<DataBean>) :
     override fun getItemViewType(position: Int): Int {
         val bean = listBean[position]
         val split = bean.picUrl?.split(",")
-        if (bean.articleId == null && split?.size == 1){
+        if (bean.articleId == null && split != null && split?.size == 1){
             return ADV_TYPE_1
-        }else if (bean.articleId == null && split?.size!! > 1){
+        }else if (bean.articleId == null && split != null && split?.size!! > 1){
             return ADV_TYPE_2
         }else{
             return ARTICLE_TYPE
@@ -62,7 +64,7 @@ class HomeOAdapter(act: Context, root: BaseFragment, listBean: List<DataBean>) :
             ADV_TYPE_1 ->{
                 viewHolder.setText(R.id.tv_title, bean?.title)
                 viewHolder.setText(R.id.tv_desc, bean?.description)
-                GlideLoadingUtils.loadRounded(act, CloudApi.SERVLET_IMG_URL + bean.picUrl, viewHolder.getView<AppCompatImageView>(R.id.iv_img))
+                GlideLoadingUtils.load(act, CloudApi.SERVLET_IMG_URL + bean.picUrl, viewHolder.getView<AppCompatImageView>(R.id.iv_img))
             }
             ADV_TYPE_2 ->{
                 viewHolder.setText(R.id.tv_title, bean?.title)
@@ -86,14 +88,18 @@ class HomeOAdapter(act: Context, root: BaseFragment, listBean: List<DataBean>) :
                 viewHolder.setText(R.id.tv_title, bean.title as String)
                 var createTime = bean?.createTime
                 if (!StringUtils.isEmpty(createTime)){
-                    createTime = createTime?.substring(5, createTime.length - 3)
+                    createTime = createTime?.substring(11, createTime.length - 3)
                     viewHolder.setText(R.id.tv_time, createTime as String)
                 }
-                viewHolder.setText(R.id.tv_read, bean?.readNum.toString() + "阅读")
+                viewHolder.setText(R.id.tv_read, NumberFormatUtils.formatNum(bean.readNum, false).toString() + "阅读")
                 GlideLoadingUtils.loadRounded(act, bean.picUrl, viewHolder.getView(R.id.iv_img))
                 val tv_desc = viewHolder.getView<AppCompatTextView>(R.id.tv_desc)
-                tv_desc.text = bean?.description
-                if (bean?.readNum > 1){
+                var description = bean?.description
+                if (description.equals("A5区块链")){
+                    description = "波士区快链"
+                }
+                tv_desc.text = description
+                if (bean?.readNum > 10000){
                     tv_desc.setCompoundDrawablesWithIntrinsicBounds(
                         act.resources.getDrawable(R.mipmap.y12, null), null,
                         null, null
@@ -111,7 +117,7 @@ class HomeOAdapter(act: Context, root: BaseFragment, listBean: List<DataBean>) :
                     UIHelper.startArticleDescAct(bean)
                 }
                 else ->{
-                    UIHelper.startHtmlAct(HtmlAct.ADV, "https:" + bean.url, bean.title)
+                    UIHelper.startHtmlAct(HtmlAct.ADV, bean.url, bean.title)
                 }
             }
         }

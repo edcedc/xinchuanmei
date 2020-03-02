@@ -40,6 +40,7 @@ class OneFrg: BaseFragment(), OneContract.View, View.OnClickListener{
         mPresenter.onLabel()
         iv_label.setOnClickListener(this)
         iv_msg.setOnClickListener(this)
+        tv_search.setOnClickListener(this)
         EventBus.getDefault().register(this)
     }
 
@@ -96,6 +97,9 @@ class OneFrg: BaseFragment(), OneContract.View, View.OnClickListener{
             }
             R.id.iv_msg ->{
                 UIHelper.startNoticelFrg(this)
+            }
+            R.id.tv_search ->{
+                UIHelper.startSearchAct()
             }
         }
     }

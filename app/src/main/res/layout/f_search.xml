@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tl="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:paddingTop="@dimen/px60"
+        android:paddingLeft="@dimen/px20"
+        android:paddingRight="@dimen/px20"
+        tools:ignore="MissingConstraints"
+        android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_cancel"
+            android:padding="@dimen/px20"
+            app:layout_constraintRight_toRightOf="parent"
+            android:text="@string/cancel"
+            style="@style/Tv15red"/>
+
+
+    <com.flyco.roundview.RoundFrameLayout
+            android:layout_marginRight="@dimen/px20"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_cancel"
+            app:layout_constraintBottom_toBottomOf="@id/tv_cancel"
+            app:layout_constraintRight_toLeftOf="@id/tv_cancel"
+            app:rv_backgroundColor="@color/white_F2F2F3"
+            app:rv_cornerRadius="@dimen/px30"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_text"
+                android:drawableLeft="@mipmap/sousuo"
+                android:drawablePadding="@dimen/px20"
+                android:imeOptions="actionSearch"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:background="@null"
+                android:paddingLeft="@dimen/px30"
+                android:paddingTop="@dimen/px10"
+                android:paddingBottom="@dimen/px10"
+                android:paddingRight="@dimen/px30"
+                android:textSize="@dimen/size24"
+                android:layout_width="match_parent"
+                android:hint="@string/search_hiht"
+                android:layout_height="wrap_content"/>
+
+    </com.flyco.roundview.RoundFrameLayout>
+
+    <View
+            android:id="@+id/v1"
+            android:layout_marginTop="@dimen/px20"
+            app:layout_constraintTop_toBottomOf="@id/tv_cancel"
+            style="@style/divider_1"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_hot"
+            style="@style/Tv12white"
+            android:layout_marginTop="@dimen/px30"
+            app:layout_constraintTop_toBottomOf="@id/v1"
+            android:text="@string/hot_record"
+            android:textColor="@color/black_121212"/>
+
+    <com.zhy.view.flowlayout.TagFlowLayout
+            android:id="@+id/fl_label"
+            android:layout_marginTop="@dimen/px30"
+            app:layout_constraintTop_toBottomOf="@id/tv_hot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_history"
+            style="@style/Tv12white"
+            app:layout_constraintTop_toTopOf="@id/tv_clear"
+            app:layout_constraintBottom_toBottomOf="@id/tv_clear"
+            android:text="@string/history1"
+            android:textColor="@color/black_121212"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_clear"
+            android:padding="@dimen/px30"
+            android:drawableLeft="@mipmap/y67"
+            android:drawablePadding="@dimen/px10"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fl_label"
+            style="@style/Tv12white"
+            android:text="@string/clear"
+            android:textColor="@color/black_121212"/>
+
+    <com.zhy.view.flowlayout.TagFlowLayout
+            android:id="@+id/fl_history"
+            app:layout_constraintTop_toBottomOf="@id/tv_clear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    <com.flyco.tablayout.SlidingTabLayout
+            android:id="@+id/tb_layout"
+            app:layout_constraintTop_toBottomOf="@id/tv_cancel"
+            android:layout_marginTop="@dimen/px20"
+            android:layout_marginRight="@dimen/px20"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/px20"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_height="40dp"
+            tl:tl_indicator_color="@color/org_FF9933"
+            tl:tl_indicator_width_equal_title="true"
+            tl:tl_tab_padding="15dp"
+            tl:tl_tab_space_equal="false"
+            tl:tl_textSelectColor="@color/black"
+            tl:tl_textUnselectColor="@color/gray_999999"
+            tl:tl_textsize="14sp"/>
+
+    <com.yc.yyc.weight.NoScrollViewPager
+            android:id="@+id/viewPager"
+            app:layout_constraintTop_toBottomOf="@id/tb_layout"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
+
+    <androidx.constraintlayout.widget.Group
+            android:id="@+id/gp_pager"
+            android:visibility="invisible"
+            app:constraint_referenced_ids="viewPager, tb_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    <androidx.constraintlayout.widget.Group
+            android:id="@+id/gp_label"
+            android:visibility="visible"
+            app:constraint_referenced_ids="tv_hot, fl_label, tv_history, tv_clear, fl_history"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,49 +10,36 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+    <com.flyco.roundview.RoundTextView
+            android:id="@+id/tv_title"
+            style="@style/Tv15black"/>
+
     <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_img"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:layout_margin="@dimen/px20"
+            android:layout_marginTop="@dimen/px20"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
             android:src="@drawable/no_banner"
             android:scaleType="fitXY"
             android:layout_width="match_parent"
             android:layout_height="233dp"/>
 
-    <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="wrap_content"
-            android:background="@mipmap/y13"
-            app:layout_constraintTop_toTopOf="@id/tv_title"
-            app:layout_constraintBottom_toBottomOf="@id/tv_title"
-            android:layout_height="wrap_content"/>
-
     <com.flyco.roundview.RoundTextView
-            android:id="@+id/tv_title"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="@dimen/px40"
-            android:gravity="center"
-            android:paddingLeft="@dimen/px5"
-            android:paddingTop="@dimen/px3"
-            android:paddingBottom="@dimen/px3"
-            android:paddingRight="@dimen/px15"
-            android:layout_marginLeft="@dimen/px8"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:rv_cornerRadius_BR="@dimen/px20"
-            app:rv_cornerRadius_TR="@dimen/px20"
-            app:rv_backgroundColor="@color/org_FF9933"
-            style="@style/Tv12gray"
-            android:textColor="@color/white"/>
+            android:id="@+id/tv_adv"
+            android:text="广告"
+            app:layout_constraintTop_toBottomOf="@id/iv_img"
+            android:layout_marginTop="@dimen/px20"
+            android:padding="@dimen/px5"
+            app:rv_strokeWidth="@dimen/px1"
+            app:rv_strokeColor="@color/gray_999999"
+            android:textSize="@dimen/size20"
+            style="@style/Tv12gray"/>
 
     <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_desc"
-            android:textColor="@color/white"
-            android:textSize="@dimen/size38"
-            app:layout_constraintLeft_toLeftOf="@id/iv_img"
-            app:layout_constraintRight_toRightOf="@id/iv_img"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_width="0dp"
-            android:layout_margin="@dimen/px40"
-            style="@style/Tv15black"/>
+            android:layout_marginLeft="@dimen/px20"
+            app:layout_constraintTop_toTopOf="@id/tv_adv"
+            app:layout_constraintBottom_toBottomOf="@id/tv_adv"
+            app:layout_constraintLeft_toRightOf="@id/tv_adv"
+            style="@style/Tv12gray"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

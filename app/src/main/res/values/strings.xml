@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">yyc框架</string>
+    <string name="app_name">波士区块链</string>
 
     <string name="message_permission_rationale">授予下列权限以继续程序:\n\n%1$s</string>
     <string name="message_overlay_failed">您的电话不允许我们使用其他应用程序.</string>
@@ -36,7 +36,7 @@
     <string name="forget_pwd" translatable="false">忘记密码？</string>
     <string name="switching_channel" translatable="false">切换频道</string>
     <string name="yyc1" translatable="false">点击对已选栏目进行切换</string>
-    <string name="noticel" translatable="false">星公告</string>
+    <string name="noticel" translatable="false">波士公告</string>
     <string name="clear" translatable="false">清空</string>
     <string name="look_desc" translatable="false">查看详情</string>
     <string name="commentary" translatable="false">精彩评论</string>
@@ -47,6 +47,7 @@
     <string name="my_collection" translatable="false">我的收藏</string>
     <string name="follow" translatable="false">关注</string>
     <string name="history" translatable="false">浏览历史</string>
+    <string name="history1" translatable="false">历史记录</string>
     <string name="contact" translatable="false">联系我们</string>
     <string name="head" translatable="false">头像</string>
     <string name="nick" translatable="false">昵称</string>
@@ -71,13 +72,20 @@
     <string name="yy10" translatable="false">用户协议</string>
     <string name="contact_information" translatable="false">联系方式</string>
     <string name="contact_information2" translatable="false">联系说明</string>
+    <string name="report_star" translatable="false">举报动态</string>
     <string name="contact_information1" translatable="false">请输入联系方式</string>
     <string name="explain" translatable="false">说明</string>
     <string name="explain1" translatable="false">请输入内容，390字以内</string>
     <string name="yy11" translatable="false">发布动态，爆料一下...</string>
     <string name="yy12" translatable="false">选择上传图片，图片不得违规！</string>
+    <string name="yy13" translatable="false">本文系波士区块链原创稿件，版权归属波士区块链所有，未经授权不得转载，已经协议授权转载的媒体下载使用时须注明“稿件来源：波士区块链”，违者将依法追究法律责任。</string>
     <string name="privacy" translatable="false">隐私</string>
     <string name="publishing" translatable="false">匿名发布</string>
     <string name="release" translatable="false">发布</string>
+    <string name="star_wen" translatable="false">动态正文</string>
+    <string name="comment" translatable="false">发表评论</string>
+    <string name="report" translatable="false">举报</string>
+    <string name="topic_desc" translatable="false">话题详情</string>
+    <string name="hot_record" translatable="false">热门记录</string>
 
 </resources>

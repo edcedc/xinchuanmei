@@ -67,10 +67,9 @@ class OnePresenter : BaseListPresenter<OneContract.View>(), OneContract.Presente
             .compose(SchedulerUtils.ioToMain())
             .subscribe({ bean ->
                 mRootView?.apply {
-                    mRootView?.hideLoading()
                     if (bean.code == ErrorStatus.SUCCESS){
                         var data = bean.result
-                        if (data != null){
+                        if (data != null ){
                             mRootView?.setBanner(data)
                         }
                     }
@@ -85,9 +84,10 @@ class OnePresenter : BaseListPresenter<OneContract.View>(), OneContract.Presente
         addSubscription(disposable)
     }
 
-     private var strs = arrayOf("影视资讯", "今日头条", "财经新闻", "军事新闻", "区块链", "人工智能",
-        "房产资讯", "娱乐新闻", "体育新闻")
-     private var ids = arrayOf("2", "1", "32", "27", "28", "29", "37", "10", "12")
+     private var strs = arrayOf("区块链", "头条", "币圈", "军事", "影视", "人工智能", "娱乐", "体育", "房产")
+     private var ids = arrayOf("28", "1", "3", "27", "2", "29", "10", "12", "37")
+
+//    分类 今日头条1 影视资讯2 财经新闻32，军事新闻27，区块链28，人工智能29，房产资讯37，娱乐新闻10，体育新闻12
 
     override fun onLabel() {
         val list = ArrayList<DataBean>()
@@ -103,7 +103,7 @@ class OnePresenter : BaseListPresenter<OneContract.View>(), OneContract.Presente
     }
 
     override fun onRequest(id: String?, page: Int) {
-        val disposable = RetrofitManager.service.articleGetArticleList(id, page)
+        val disposable = RetrofitManager.service.articleGetArticleList(null, id, page, null)
             .compose(SchedulerUtils.ioToMain())
             .subscribe({ bean ->
                 mRootView?.apply {

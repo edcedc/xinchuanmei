@@ -43,10 +43,12 @@
 
                     <com.lzj.gallery.library.views.BannerViewPager
                             android:id="@+id/banner"
+                            android:background="@color/transparent"
                             android:layout_width="match_parent"
                             android:layout_height="200dp"/>
 
                    <LinearLayout
+                           android:id="@+id/ly_adv"
                            android:layout_margin="@dimen/px20"
                            android:background="@color/white_f4f4f4"
                            android:gravity="center"
@@ -56,7 +58,7 @@
 
                        <androidx.appcompat.widget.AppCompatTextView
                                android:drawableLeft="@mipmap/y14"
-                               android:textColor="@color/black"
+                               android:textColor="@color/org_FF9933"
                                android:layout_marginLeft="@dimen/px20"
                                android:text="@string/notice"
                                android:drawablePadding="@dimen/px20"

@@ -11,11 +11,15 @@ import com.hazz.kotlinmvp.base.IListPresenter
 
 interface CollectContract {
 
-    interface View : IBaseListView
+    interface View : IBaseListView {
+        fun setPraise(position: Int, praise: Int)
+    }
 
     interface Presenter: IListPresenter<View> {
 
          fun onRequest(pagerNumber: Int)
+         fun onRequestStar(pagerNumber: Int)
+        fun onPraise(position: Int, id: String?, praise: Int)
 
     }
 
